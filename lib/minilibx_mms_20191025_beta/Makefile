@@ -10,7 +10,7 @@ OBJ=$(SRC:.swift=.o)
 C_SRC= mlx_xpm.c mlx_png.c mlx_string_put.c
 C_OBJ=$(C_SRC:.c=.o)
 
-NAME=../../libmlx.dylib
+NAME=libmlx.dylib
 
 INC=-I.
 

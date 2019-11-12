@@ -6,15 +6,15 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/12 20:11:32 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/12 20:56:21 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 		= 	gcc
 
 D_SRC	=	./src/
-D_INC	=	./include/
-D_LIB	=	./lib/minilibx_mms_20191025_beta
+D_INC	=	./lib/minilibx_mms_20191025_beta/
+D_LIB	=	./lib/minilibx_mms_20191025_beta/
 BUILD_DIR	=	build
 
 SRC_PATH	=	main.c
@@ -27,7 +27,7 @@ OBJ	=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 
 CFLAGS	=	-I$(D_INC) #-Wall -Wextra -Werror
 
-LDFLAGS	=	-L$(D_LIB) -lmlx -lm
+LDFLAGS	=	-L$(D_LIB) -lm
 
 all:	$(NAME)
 

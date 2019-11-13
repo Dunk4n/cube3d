@@ -10,14 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC 		= 	gcc
+CC		=	gcc
 
 D_SRC	=	./src/
-D_INC	=	./lib/minilibx_mms_20191025_beta/
-D_LIB	=	./lib/minilibx_mms_20191025_beta/
+D_INC	=	./include/
+D_LIB	=	./lib/
+
+LIB_DIR_PATH	=	libft
+
+LIB = $(addprefix $(D_LIB),$(LIB_DIR_PATH))
+
 BUILD_DIR	=	build
 
-SRC_PATH	=	main.c
+SRC_PATH	=	parsing.c
 
 SRC = $(addprefix $(D_SRC),$(SRC_PATH))
 
@@ -27,7 +32,7 @@ OBJ	=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 
 CFLAGS	=	-I$(D_INC) #-Wall -Wextra -Werror
 
-LDFLAGS	=	-L$(D_LIB) -lm
+LDFLAGS	=	-L$(D_LIB) -lm -lft
 
 all:	$(NAME)
 
@@ -42,16 +47,18 @@ $(BUILD_DIR)/%.o: %.c $(INC)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	@$(MAKE) -C $(LIB) clean --no-print-directory
 	@echo "  RM       $(BUILD_DIR)"
 	@rm -rf $(BUILD_DIR)
 
 fclean: clean
-	@$(MAKE) -C $(D_LIB) clean --no-print-directory
+	@$(MAKE) -C $(LIB) fclean --no-print-directory
 	@echo "  RM       $(NAME)"
 	@rm -f $(NAME) *~
 
 lib:
-	@make -C $(D_LIB) --no-print-directory
+	echo $(LIB)
+	@make -C $(LIB) --no-print-directory
 
 $(NAME): lib options $(OBJ)
 	@echo "  BUILD    $@"

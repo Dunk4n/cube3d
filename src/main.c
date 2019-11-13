@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include <stdio.h>
+#include <mlx.h>
 
 typedef	struct	s_win
 {
@@ -24,11 +25,6 @@ typedef struct	s_veci2
 	int	y;
 }				t_veci2;
 
-union u_color
-{
-	unsigned char	ARGB[4];
-	unsigned int	color;
-};
 
 void	draw_square(t_win *win, t_veci2 pos, t_veci2 size, union u_color color, char *img)
 {

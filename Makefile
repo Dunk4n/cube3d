@@ -25,6 +25,8 @@ BUILD_DIR	=	build
 SRC_PATH	=	parsing.c		\
 				get_arg.c		\
 				get_map.c		\
+				to_good_map.c	\
+				good_map.c		\
 
 SRC = $(addprefix $(D_SRC),$(SRC_PATH))
 
@@ -32,7 +34,7 @@ NAME	=	cube3d
 
 OBJ	=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 
-CFLAGS	=	-g -I$(D_INC) #-Wall -Wextra -Werror
+CFLAGS	=	-I$(D_INC) -Wall -Wextra -Werror
 
 LDFLAGS	=	-L$(D_LIB) -lm -lft
 

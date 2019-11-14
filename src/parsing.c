@@ -28,11 +28,10 @@ void	free_identifier(t_map *map, char *line, int fd)
 	free(line);
 	close(fd);
 	//TODO: free north ... sprite
-	printf("a %p\n", map->map);
 	if (!map->map)
 		return ;
 	i = 0;
-	while (map->map[i])
+	while (map->map[i] && i < map->nb_line)
 		free(map->map[i++]);
 	free(map->map);
 	free(map->line_size);
@@ -44,7 +43,7 @@ int		(*const g_arg_fonction[NB_IDENTIFIER])(int, t_map*, char*) = {
 
 int		parse_identifier_line(char *line, t_map *map)
 {
-	const char	arg[][3] = {"NO", "SO", "WE", "EA", "S", "R", "F", "C"};
+	const char	arg[][3] = {"NO", "SO", "EA", "WE", "S", "R", "F", "C"};
 	int			i;
 	int			j;
 
@@ -61,8 +60,8 @@ int		parse_identifier_line(char *line, t_map *map)
 		return (0);
 	j = 0;
 	while (j++ < NB_IDENTIFIER)
-		if (!ft_strncmp(line, arg[j - 1], (ft_strlen(arg[j - 1]) < i) ? i :
-ft_strlen(arg[j - 1])))
+		if (!ft_strncmp(line, arg[j - 1], (ft_strlen(arg[j - 1]) < (size_t)i) ?
+(size_t)i : ft_strlen(arg[j - 1])))
 			return (g_arg_fonction[j - 1](j - 1, map, line + i));
 	return (0);
 }
@@ -88,9 +87,7 @@ int		get_file(char *file_name, t_map *map)
 	}
 	if (ret <= 0 || !get_map(fd, &line, map))
 	{
-		printf("BBB\n");
 		free_identifier(map, line, fd);
-		printf("BBB\n");
 		return (0);
 	}
 	close(fd);
@@ -115,9 +112,10 @@ int		main(int ac, char **av)
 	map.roof.ARGB[A] = 1;
 	map.map = NULL;
 	map.line_size = NULL;
+	map.nb_line = 0;
 	if (!get_file(av[1], &map))
 	{
-		printf("ERROR MAP\n");
+		write(1, "ERROR\n", 6);
 		return (1);
 	}
 	printf("map = {%d, %d}, floor = %d,%d,%d roof = %d,%d,%d\n",

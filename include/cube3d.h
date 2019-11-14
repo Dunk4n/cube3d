@@ -3,9 +3,11 @@
 
 # include "../lib/libft/libft.h"
 
+# define CHAR_MAP "NSEW012"
+
 enum	union_identifier
 {
-	NO, SO, WE, EA, S, RE, F, C, NB_IDENTIFIER
+	NO, SO, EA, WE, S, RE, F, C, NB_IDENTIFIER
 };
 
 enum	union_ARGB
@@ -36,11 +38,15 @@ typedef	struct	s_map
 
 	char	**map;
 	int		*line_size;
+	int		nb_line;
+	char	perso_dir;
 }				t_map;
 
 int		get_arg_r(int indice, t_map *map, char *line);
 int		get_arg_tex(int indice, t_map *map, char *line);
 int		get_arg_color(int indice, t_map *map, char *line);
 int		get_map(int fd, char **line, t_map *map);
+char	*to_good_map(char *line, t_map *map, int nb);
+int		good_map(t_map *map);
 
 #endif

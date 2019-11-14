@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/08 14:45:08 by niduches          #+#    #+#              #
-#    Updated: 2019/10/15 15:47:51 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/14 15:50:48 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ LIB		=	printf/printf.a				\
 
 OBJ		=	$(SRC:%.c=%.o)
 
-CFLAGS	+=	-Wall -Wextra -Werror
+CFLAGS	+=	#-Wall -Wextra -Werror
 
 NAME	=	../libft.a
 

@@ -38,4 +38,9 @@ typedef	struct	s_map
 	int		*line_size;
 }				t_map;
 
+int		get_arg_r(int indice, t_map *map, char *line);
+int		get_arg_tex(int indice, t_map *map, char *line);
+int		get_arg_color(int indice, t_map *map, char *line);
+int		get_map(int fd, char **line, t_map *map);
+
 #endif

@@ -6,12 +6,18 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 17:13:31 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/12 23:48:36 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/15 12:45:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <mlx.h>
+
+typedef union	u_color
+{
+	unsigned char	ARGB[4];
+	unsigned int	color;
+}				t_color;
 
 typedef	struct	s_win
 {
@@ -41,10 +47,10 @@ void	draw_square(t_win *win, t_veci2 pos, t_veci2 size, union u_color color, cha
 		{
 //			mlx_pixel_put(win->mlx_ptr, win->win_ptr,
 //pos.x + j, pos.y + i, color);
-			img[((j) * 4) + (i * 4 * 500)] = color.ARGB[0];
-			img[((j) * 4) + (i * 4 * 500) + 1] = color.ARGB[1];
-			img[((j) * 4) + (i * 4 * 500) + 2] = color.ARGB[2];
-			img[((j) * 4) + (i * 4 * 500) + 3] = 0;
+			img[((j) * 4) + (i * 4 * 128)] = color.ARGB[0];
+			img[((j) * 4) + (i * 4 * 128) + 1] = color.ARGB[1];
+			img[((j) * 4) + (i * 4 * 128) + 2] = color.ARGB[2];
+			img[((j) * 4) + (i * 4 * 128) + 3] = 0;
 			j++;
 		}
 		i++;
@@ -61,7 +67,7 @@ int		main(void)
 		return (0);
 	if (!(win.win_ptr = mlx_new_window(win.mlx_ptr, 500, 500, "test 42")))
 		return (0);
-	void *img = mlx_new_image(win.mlx_ptr, 500, 500);
+	void *img = mlx_new_image(win.mlx_ptr, 100, 100);
 	if (!img)
 		return (0);
 	color.ARGB[0] = 0;
@@ -74,13 +80,13 @@ int		main(void)
 	int endian = 0;
 	void *data = mlx_get_data_addr(img, &pixel, &line, &endian);
 
-	printf("%d\n", line);
+	printf("line = %d\n", line / 4);
 	draw_square(&win, (t_veci2){0, 0}, (t_veci2){100, 100}, color, (char*)data);
 	printf("AAA\n");
 	mlx_put_image_to_window(win.mlx_ptr, win.win_ptr, img, 0, 0);
 	printf("b\n");
 	mlx_loop(win.mlx_ptr);
 	printf("c\n");
-//	mlx_destroy_window(win.mlx_ptr, win.win_ptr);
+	mlx_destroy_window(win.mlx_ptr, win.win_ptr);
 	return (0);
 }

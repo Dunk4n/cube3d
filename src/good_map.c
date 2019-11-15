@@ -23,6 +23,20 @@ static int	no_border(t_map *map, int y, int x)
 	return (0);
 }
 
+static int	set_pos(t_map *map, int	ret, int x, int y)
+{
+	if (ret <= WE)
+	{
+		if (map->perso_dir != -1)
+			return (0);
+		map->perso_dir = ret;
+		map->pos.x = x;
+		map->pos.y = y;
+		map->map[x][y] = '0';
+	}
+	return (1);
+}
+
 int			good_map(t_map *map)
 {
 	int	i;
@@ -38,10 +52,8 @@ int			good_map(t_map *map)
 		{
 			if (!(ret = good_map_char(map->map[i][j])))
 				return (0);
-			if (map->perso_dir != -1 && ret <= WE)
+			if (!set_pos(map, ret, j, i))
 				return (0);
-			if (map->perso_dir == -1 && ret <= WE)
-				map->perso_dir = ret;
 			if (map->map[i][j] != '1' && no_border(map, i, j))
 				return (0);
 			j++;

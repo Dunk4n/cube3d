@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:51:55 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/14 17:04:23 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/15 11:12:13 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ int		empty_line(char *line, int ret)
 	return (1);
 }
 
+void	set_map_to_null(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->nb_line)
+		map->map[i++] = NULL;
+}
+
 int		get_all_map(int fd, t_map *map, int nb)
 {
 	char	*line;
@@ -66,13 +75,14 @@ int		get_all_map(int fd, t_map *map, int nb)
 		return (0);
 	if (ret == 0 && !*line)
 	{
-		if (!(map->map = malloc((nb + 1) * sizeof(char*))) ||
+		if (!(map->map = malloc((nb) * sizeof(char*))) ||
 !(map->line_size = malloc(nb * sizeof(int))))
 		{
 			free(line);
 			return (0);
 		}
 		map->nb_line = nb;
+		set_map_to_null(map);
 		free(line);
 		return (1);
 	}
@@ -94,19 +104,23 @@ int		get_map(int fd, char **line, t_map *map)
 	if (!(map->map[0] = to_good_map(*line, map, 0)))
 		return (0);
 	*line = NULL;
-	//TODO check if map is good
 	if (!good_map(map))
-	{
-		printf("map\n");
 		return (0);
-	}
 
 	int i = 0;
+	int j;
 	if (!map->map)
 		return (0);
-	while (map->map[i])
+	while (i < map->nb_line)
 	{
-		printf("[%s]%d\n", map->map[i], map->line_size[i]);
+		j = 0;
+		printf("[");
+		while (j < map->line_size[i])
+		{
+			printf("%c", map->map[i][j]);
+			j++;
+		}
+		printf("]%d\n", map->line_size[i]);
 		i++;
 	}
 	return (1);

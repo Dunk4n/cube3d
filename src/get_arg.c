@@ -6,17 +6,18 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/14 14:57:26 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/15 12:36:04 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-int		get_arg_r(int indice, t_map *map, char *line)
+int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 {
 	int	i;
 
 	(void)indice;
+	(void)mlx_ptr;
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
@@ -39,20 +40,33 @@ int		get_arg_r(int indice, t_map *map, char *line)
 	return (1);
 }
 
-int		get_arg_tex(int indice, t_map *map, char *line)
+int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr)
 {
-	(void)indice;
-	(void)map;
-	(void)line;
-	//TODO
-	map->tex[indice] = (void*)1;
+	int	i;
+	int	j;
+
+	while (ft_isspace(*line))
+		line++;
+	i = 0;
+	while (line[i] && !ft_isspace(line[i]))
+		i++;
+	j = 0;
+	while (line[i + j] && ft_isspace(line[i + j]))
+		j++;
+	if (line[i + j])
+		return (0);
+	line[i] = '\0';
+	if (!(map->tex[indice].tex = mlx_png_file_to_image(mlx_ptr, line,
+&(map->tex[indice].size.x), &(map->tex[indice].size.y))))
+		return (0);
 	return (1);
 }
 
-int		get_arg_color(int indice, t_map *map, char *line)
+int		get_arg_color(int indice, t_map *map, char *line, void *mlx_ptr)
 {
 	t_color	*color;
 
+	(void)mlx_ptr;
 	color = (indice == F) ? &(map->floor) : &(map->roof);
 	while (*line && ft_isspace(*line))
 		line++;

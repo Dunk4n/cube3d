@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:07:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 19:05:47 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/16 21:31:23 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	raycasting(t_map *map, t_tex *img)
 	double	per_wall_dist;
 	t_vec2i	pos;
 	t_vec2i draw;
+	int		tab[] = {0x00ff0000, 0x0000ff00, 0x000000ff, 0x00ffff00, 0x00ff00ff, 0x0000ffff, 0x00ffffff};
 
 	x = 0;
 	while (x < map->res.x)
@@ -95,7 +96,9 @@ void	raycasting(t_map *map, t_tex *img)
 		draw.y = line_height / 2 + map->res.y / 2;
 		if (draw.y >= map->res.y)
 			draw.y = map->res.y - 1;
-		draw_vertical_line(img, x, draw, 0x00ff0000);
+		draw_vertical_line(img, x, (t_vec2i){0, draw.x}, map->roof.color);
+		draw_vertical_line(img, x, draw, tab[(pos.x + pos.y) % (sizeof(tab) / 4)]);
+		draw_vertical_line(img, x, (t_vec2i){draw.y, map->res.y}, map->floor.color);
 		x++;
 	}
 }

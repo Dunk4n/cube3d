@@ -2,3 +2,5 @@ new:
 gcc src/main.c libmlx.dylib -I./lib/minilibx_mms_20191025_beta
 old:
 gcc -I /usr/local/include src/main.c -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit
+
+https://lodev.org/cgtutor/raycasting.html

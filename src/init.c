@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 18:49:47 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/16 21:05:12 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	init_map(t_map *map)
 	map->map = NULL;
 	map->line_size = NULL;
 	map->nb_line = 0;
-	map->plane.x = 0;
-	map->plane.y = 0.66;
 }
 
 int	init_game(t_game *game, char *map_name)

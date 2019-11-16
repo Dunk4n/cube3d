@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 19:13:53 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/16 21:16:21 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ int		key_press(int key, t_game *game)
 
 	if (key == K_UP)
 	{
-		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.dir.x * speed)])
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.dir.x * speed)] != '1')
 			game->map.pos.x += game->map.dir.x * speed;
-		if (game->map.map[(int)(game->map.pos.y + game->map.dir.y * speed)][(int)game->map.pos.x])
+		if (game->map.map[(int)(game->map.pos.y + game->map.dir.y * speed)][(int)game->map.pos.x] != '1')
 			game->map.pos.y += game->map.dir.y * speed;
 	}
 	if (key == K_DOWN)
 	{
-		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.dir.x * speed)])
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.dir.x * speed)] != '1')
 			game->map.pos.x -= game->map.dir.x * speed;
-		if (game->map.map[(int)(game->map.pos.y - game->map.dir.y * speed)][(int)game->map.pos.x])
+		if (game->map.map[(int)(game->map.pos.y - game->map.dir.y * speed)][(int)game->map.pos.x] != '1')
 			game->map.pos.y -= game->map.dir.y * speed;
 	}
 	if (key == K_RIGHT)

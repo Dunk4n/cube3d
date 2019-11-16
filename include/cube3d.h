@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube3d.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
+/*   Updated: 2019/11/16 20:04:19 by niduches         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+# include <mlx.h>
 # include "../lib/libft/libft.h"
-# include "../lib/minilibx_mms_20191025_beta/mlx.h"
 # include "keys.h"
 
 # define CHAR_MAP "NSEW012"

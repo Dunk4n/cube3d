@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/16 18:49:28 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/16 20:04:54 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ OBJ	=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 
 CFLAGS	=	-I$(D_INC) #-Wall -Wextra -Werror
 
-LDFLAGS	=	-L$(D_LIB) -lm -lft
+LDFLAGS	=	-L$(D_LIB) -lm -lft -lmlx -framework OpenGL -framework Appkit
 
 all:	$(NAME)
 
@@ -72,7 +72,7 @@ lib:
 
 $(NAME): lib options $(OBJ)
 	@echo "  BUILD    $@"
-	@$(CC) $(CFLAGS) -o $@ $(OBJ) libmlx.dylib $(LDFLAGS)
+	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 
 re:
 	@$(MAKE) fclean --no-print-directory

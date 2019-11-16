@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/15 12:36:04 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/16 16:56:14 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,15 @@ int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr)
 	if (line[i + j])
 		return (0);
 	line[i] = '\0';
+	//=======================
+	map->tex[indice].tex = (void*)1;
+	return (1);
 	if (!(map->tex[indice].tex = mlx_png_file_to_image(mlx_ptr, line,
 &(map->tex[indice].size.x), &(map->tex[indice].size.y))))
 		return (0);
+	map->tex[indice].data = mlx_get_data_addr(map->tex[indice].tex,
+&(map->tex[indice].bits_per_pixel), &(map->tex[indice].size_line),
+&(map->tex[indice].endian));
 	return (1);
 }
 

@@ -6,13 +6,13 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:51:55 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/15 11:12:13 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/16 18:07:40 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
 
-char	*pass_empty_line(int fd, char **line)
+static char	*pass_empty_line(int fd, char **line)
 {
 	int	i;
 	int	ret;
@@ -40,7 +40,7 @@ char	*pass_empty_line(int fd, char **line)
 	return (*line);
 }
 
-int		empty_line(char *line, int ret)
+static int	empty_line(char *line, int ret)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ int		empty_line(char *line, int ret)
 	return (1);
 }
 
-void	set_map_to_null(t_map *map)
+static void	set_map_to_null(t_map *map)
 {
 	int	i;
 
@@ -66,7 +66,7 @@ void	set_map_to_null(t_map *map)
 		map->map[i++] = NULL;
 }
 
-int		get_all_map(int fd, t_map *map, int nb)
+static int	get_all_map(int fd, t_map *map, int nb)
 {
 	char	*line;
 	int		ret;
@@ -95,7 +95,7 @@ int		get_all_map(int fd, t_map *map, int nb)
 	return (1);
 }
 
-int		get_map(int fd, char **line, t_map *map)
+int			get_map(int fd, char **line, t_map *map)
 {
 	if (!(*line = pass_empty_line(fd, line)))
 		return (0);
@@ -106,22 +106,5 @@ int		get_map(int fd, char **line, t_map *map)
 	*line = NULL;
 	if (!good_map(map))
 		return (0);
-
-	int i = 0;
-	int j;
-	if (!map->map)
-		return (0);
-	while (i < map->nb_line)
-	{
-		j = 0;
-		printf("[");
-		while (j < map->line_size[i])
-		{
-			printf("%c", map->map[i][j]);
-			j++;
-		}
-		printf("]%d\n", map->line_size[i]);
-		i++;
-	}
 	return (1);
 }

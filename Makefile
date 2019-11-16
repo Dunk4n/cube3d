@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/15 12:31:09 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/16 18:49:28 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,17 @@ LIB = $(addprefix $(D_LIB),$(LIB_DIR_PATH))
 
 BUILD_DIR	=	build
 
-SRC_PATH	=	parsing.c		\
-				get_arg.c		\
-				get_map.c		\
-				to_good_map.c	\
-				good_map.c		\
+SRC_PATH	=	main.c					\
+				parsing.c				\
+				get_arg.c				\
+				get_map.c				\
+				to_good_map.c			\
+				good_map.c				\
+				free_all.c				\
+				init.c					\
+				display.c				\
+				raycasting.c			\
+				draw_vertical_line.c	\
 
 SRC = $(addprefix $(D_SRC),$(SRC_PATH))
 

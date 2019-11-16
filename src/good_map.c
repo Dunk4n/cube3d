@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   good_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/15 20:47:47 by niduches          #+#    #+#             */
+/*   Updated: 2019/11/16 18:26:16 by niduches         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cube3d.h"
 
@@ -27,12 +38,19 @@ static int	set_pos(t_map *map, int	ret, int x, int y)
 {
 	if (ret <= WE)
 	{
-		if (map->perso_dir != -1)
+		if (map->dir.x != -2)
 			return (0);
-		map->perso_dir = ret;
-		map->pos.x = x;
-		map->pos.y = y;
-		map->map[x][y] = '0';
+		if (ret == NO)
+			map->dir = (t_vec2f){0, 1};
+		else if (ret == SO)
+			map->dir = (t_vec2f){0, -1};
+		else if (ret == EA)
+			map->dir = (t_vec2f){1, 0};
+		else
+			map->dir = (t_vec2f){-1, 0};
+		map->pos.x = (double)x;
+		map->pos.y = (double)y;
+		map->map[(int)y][(int)x] = '0';
 	}
 	return (1);
 }
@@ -43,7 +61,7 @@ int			good_map(t_map *map)
 	int	j;
 	int	ret;
 
-	map->perso_dir = -1;
+	map->dir.x = -2;
 	i = 0;
 	while (i < map->nb_line)
 	{
@@ -52,7 +70,7 @@ int			good_map(t_map *map)
 		{
 			if (!(ret = good_map_char(map->map[i][j])))
 				return (0);
-			if (!set_pos(map, ret, j, i))
+			if (!set_pos(map, ret - 1, j, i))
 				return (0);
 			if (map->map[i][j] != '1' && no_border(map, i, j))
 				return (0);
@@ -60,5 +78,5 @@ int			good_map(t_map *map)
 		}
 		i++;
 	}
-	return ((map->perso_dir == -1) ? 0 : 1);
+	return ((map->dir.x == -2) ? 0 : 1);
 }

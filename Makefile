@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/16 20:04:54 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/17 15:29:49 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ NAME	=	cube3d
 
 OBJ	=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 
-CFLAGS	=	-I$(D_INC) #-Wall -Wextra -Werror
+CFLAGS	=	-g -I$(D_INC) #-Wall -Wextra -Werror
 
 LDFLAGS	=	-L$(D_LIB) -lm -lft -lmlx -framework OpenGL -framework Appkit
 
@@ -74,8 +74,12 @@ $(NAME): lib options $(OBJ)
 	@echo "  BUILD    $@"
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 
+bonus: lib options $(OBJ)
+	@echo "  BUILD    $@"
+	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
+
 re:
 	@$(MAKE) fclean --no-print-directory
 	@$(MAKE) all --no-print-directory
 
-.PHONY: all options lib clean fclean re
+.PHONY: all options lib clean fclean re bonus

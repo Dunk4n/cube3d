@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:47:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 21:10:45 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/17 17:29:00 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	set_pos(t_map *map, int	ret, int x, int y)
 	t_vec2f	dir[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 	t_vec2f	plane[] = {{0.66, 0}, {-0.66, 0}, {0, -0.66}, {0, 0.66}};
 
-	if (ret <= WE)
+	if (ret < 4)
 	{
 		if (map->dir.x != -2)
 			return (0);

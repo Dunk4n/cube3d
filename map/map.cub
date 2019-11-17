@@ -1,10 +1,10 @@
 R 1920 1080
-NO ./img/stone1.xpm
-SO ./img/stone1.xpm
-WE ./img/stone1.xpm
-EA ./img/stone1.xpm
+NO ./img/mur.xpm
+SO ./img/mur.xpm
+WE ./img/mur.xpm
+EA ./img/mur.xpm
 
-S ./img/linux.png
+S ./img/mur.xpm
 F 225,100,0
 C 225,30,0
 

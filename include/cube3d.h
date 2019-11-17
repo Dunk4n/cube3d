@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 20:04:19 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/17 17:45:41 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include "keys.h"
 
 # define CHAR_MAP "NSEW012"
-# define ABS(x) (((x) < 0) ? -(x) : (x));
+# define ABS(x) (((x) < 0) ? -(x) : (x))
 
 enum	union_identifier
 {
-	NO, SO, EA, WE, S, RE, F, C, NB_IDENTIFIER
+	NO, WE, SO, EA, S, RE, F, C, NB_IDENTIFIER
 };
 
 enum	union_ARGB
@@ -41,6 +41,13 @@ typedef struct	s_vec2i
 	int	x;
 	int	y;
 }				t_vec2i;
+
+typedef struct	s_vec3i
+{
+	int	x;
+	int	y;
+	int	z;
+}				t_vec3i;
 
 typedef struct	s_vec2f
 {

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 17:21:41 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/17 17:30:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		(*const g_arg_fonction[NB_IDENTIFIER])(int, t_map*, char*,
 
 static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 {
-	const char	arg[][3] = {"NO", "SO", "EA", "WE", "S", "R", "F", "C"};
+	const char	arg[][3] = {"NO", "WE", "SO", "EA", "S", "R", "F", "C"};
 	int			i;
 	int			j;
 
@@ -72,7 +72,6 @@ int			get_file(char *file_name, t_map *map, void *mlx_ptr)
 	}
 	if (ret <= 0 || !get_map(fd, &line, map))
 	{
-		printf("get_file\n");
 		free_map(map, line, fd, mlx_ptr);
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 21:16:21 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/17 15:24:34 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ int		main(int ac, char **av)
 		write(1, "ERROR\n", 6);
 		return (1);
 	}
+
+//	mlx_do_key_autorepeatoff(game.mlx_ptr);
+//	mlx_do_key_autorepeaton(game.mlx_ptr);
 
 	mlx_hook(game.win_ptr, 17, 0L, quit_game, (void*)(&game));
 	mlx_hook(game.win_ptr, 2, 1L << 0, key_press, (void*)(&game));

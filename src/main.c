@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 15:24:34 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/17 19:24:47 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		key_released(int key, t_game *game)
 
 int		key_press(int key, t_game *game)
 {
-	double rot = 0.05;
+	double rot = 0.07;
 	double speed = 0.2;
 
 	if (key == K_UP)

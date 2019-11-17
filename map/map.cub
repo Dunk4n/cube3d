@@ -1,12 +1,12 @@
 R 1920 1080
-NO ./img/mur.xpm
-SO ./img/mur.xpm
-WE ./img/mur.xpm
-EA ./img/mur.xpm
+NO ./img/stone1.xpm
+SO ./img/wall1.xpm
+WE ./img/wood.xpm
+EA ./img/stone5.xpm
 
-S ./img/mur.xpm
-F 225,100,0
-C 225,30,0
+S ./img/stone5.xpm
+F 25,100,0
+C 25,30,0
 
 11111111111111111111
 11000111111111111111

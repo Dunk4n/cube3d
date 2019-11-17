@@ -4,3 +4,17 @@ old:
 gcc -I /usr/local/include src/main.c -L /usr/local/lib -lmlx -framework OpenGL -framework Appkit
 
 https://lodev.org/cgtutor/raycasting.html
+
+• Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur
+
+• En prévision du jour où deepthought aura des yeux pour évaluer votre projet,
+votre programme doit pouvoir sauver la première image rendue au format bmp
+lorsque le second argument est "–save".
+
+◦ Les touches flèches du gauche et droite du clavier doivent permettre de faire
+une rotation de la caméra (regarder a gauche et a droite)
+◦ Les touches Z, Q, S et D doivent permettre de déplacer la caméra (déplacement
+du personnage)
+
+◦ Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
+la taille de fenêtre doit être celle de l’écran.

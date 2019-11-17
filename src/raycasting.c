@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:07:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 18:34:57 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/17 19:20:28 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,12 @@ void	raycasting(t_map *map, t_tex *img)
 		get_wall(map, x, &draw, &tex);
 		draw.z = x;
 		draw_vline_tex(map, img, draw, tex);
-		//draw_vertical_line(img, x, , 0x00ff0000);
-		//draw_vertical_line(img, x, , 0x00ff0000);
+		if (draw.x > map->res.y)
+			draw.x = map->res.y;
+		draw_vertical_line(img, x, (t_vec2i){0, draw.x}, map->roof.color);
+		if (draw.y < 0)
+			draw.y = 0;
+		draw_vertical_line(img, x, (t_vec2i){draw.y, map->res.y}, map->floor.color);
 		x++;
 	}
 }

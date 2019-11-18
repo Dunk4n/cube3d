@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 21:05:12 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:03:44 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ void	init_map(t_map *map)
 	map->map = NULL;
 	map->line_size = NULL;
 	map->nb_line = 0;
+	map->zbuffer = NULL;
+	map->sprite = NULL;
+	map->nb_sprite = 0;
 }
 
 int	init_game(t_game *game, char *map_name)
@@ -50,5 +53,7 @@ game->map.res.y)))
 	game->img.data = mlx_get_data_addr(game->img.tex, &game->img.bits_per_pixel,
 &game->img.size_line, &game->img.endian);
 	game->img.size_line /= 4;
+	if (!get_sprite(&game->map))
+		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:47:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 17:29:00 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:17:16 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	set_pos(t_map *map, int	ret, int x, int y)
 			return (0);
 		map->dir = dir[ret];
 		map->plane = plane[ret];
-		map->pos.x = (double)x;
-		map->pos.y = (double)y;
+		map->pos.x = (double)x + 0.5;
+		map->pos.y = (double)y + 0.5;
 		map->map[(int)y][(int)x] = '0';
 	}
 	return (1);

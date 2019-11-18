@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 17:45:41 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 18:15:31 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ enum	union_identifier
 enum	union_ARGB
 {
 	B, G, R, A
+};
+
+enum	raycasting_tab2i
+{
+	POS, STEP, NB_TAB2I
+};
+
+enum	raycasting_tab2f
+{
+	DELTA_DIST, SIDE_DIST, NB_TAB2F
 };
 
 typedef union	u_color
@@ -65,21 +75,32 @@ typedef	struct	s_tex
 	int		endian;
 }				t_tex;
 
+typedef struct	s_sprite
+{
+	int		tex;
+	double	dist;
+	t_vec2f	pos;
+}				t_sprite;
+
 typedef	struct	s_map
 {
-	t_vec2i	res;
+	t_vec2i		res;
 
-	t_tex	tex[5];
+	t_tex		tex[5];
 
-	t_color	floor;
-	t_color	roof;
+	t_color		floor;
+	t_color		roof;
 
-	char	**map;
-	int		*line_size;
-	int		nb_line;
-	t_vec2f	dir;
-	t_vec2f	pos;
-	t_vec2f	plane;
+	char		**map;
+	int			*line_size;
+	int			nb_line;
+	t_vec2f		dir;
+	t_vec2f		pos;
+	t_vec2f		plane;
+
+	double		*zbuffer;
+	t_sprite	*sprite;
+	int			nb_sprite;
 }				t_map;
 
 typedef struct	s_game
@@ -103,5 +124,11 @@ int		init_game(t_game *game, char *map_name);
 int		display(t_game *game);
 void	raycasting(t_map *map, t_tex *img);
 void	draw_vertical_line(t_tex *img, int x, t_vec2i draw, int color);
+void	draw_square(t_tex *img, t_vec2i pos, t_vec2i draw, int color);
+int		get_sprite(t_map *map);
+void	draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw, t_vec3i tex);
+void	get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex);
+double	get_hit(t_map *map, t_vec2f ray_dir, int *side);
+void	sort_sprite(t_map *map);
 
 #endif

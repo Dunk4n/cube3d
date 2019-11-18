@@ -1,6 +1,6 @@
 R 1920 1080
-NO ./img/stone1.xpm
-SO ./img/wall1.xpm
+NO ./img/knight.xpm
+SO ./img/barrel.xpm
 WE ./img/wood.xpm
 EA ./img/stone5.xpm
 

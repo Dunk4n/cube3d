@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 19:36:22 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 14:59:22 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ int		display(t_game *game)
 	clear_img(&game->img);
 	raycasting(&game->map, &game->img);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.tex, 0, 0);
-	//usleep(500000);
 	return (0);
 }

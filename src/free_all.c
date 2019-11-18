@@ -6,12 +6,20 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 21:22:43 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/16 17:26:30 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 15:02:51 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "cube3d.h"
+
+void	free_map_sprite(t_map *map)
+{
+	free(map->zbuffer);
+	map->zbuffer = NULL;
+	free(map->sprite);
+	map->sprite = NULL;
+}
 
 void	free_map(t_map *map, char *line, int fd, void *mlx_ptr)
 {
@@ -22,13 +30,11 @@ void	free_map(t_map *map, char *line, int fd, void *mlx_ptr)
 		close(fd);
 	if (!map)
 		return ;
-/*	mlx_destroy_image(mlx_ptr, map->tex[NO].tex);
 	mlx_destroy_image(mlx_ptr, map->tex[NO].tex);
 	mlx_destroy_image(mlx_ptr, map->tex[SO].tex);
 	mlx_destroy_image(mlx_ptr, map->tex[WE].tex);
 	mlx_destroy_image(mlx_ptr, map->tex[EA].tex);
 	mlx_destroy_image(mlx_ptr, map->tex[S].tex);
-	*/
 	if (!map->map)
 		return ;
 	i = 0;
@@ -38,6 +44,7 @@ void	free_map(t_map *map, char *line, int fd, void *mlx_ptr)
 	map->map = NULL;
 	free(map->line_size);
 	map->line_size = NULL;
+	free_map_sprite(map);
 }
 
 void	free_all(t_game *game)

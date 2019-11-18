@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 19:24:47 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 18:59:18 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,35 @@ int		key_press(int key, t_game *game)
 	double rot = 0.07;
 	double speed = 0.2;
 
-	if (key == K_UP)
+	if (key == K_W || key == K_UP)
 	{
 		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.dir.x * speed)] != '1')
 			game->map.pos.x += game->map.dir.x * speed;
 		if (game->map.map[(int)(game->map.pos.y + game->map.dir.y * speed)][(int)game->map.pos.x] != '1')
 			game->map.pos.y += game->map.dir.y * speed;
 	}
-	if (key == K_DOWN)
+	if (key == K_S || key == K_DOWN)
 	{
 		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.dir.x * speed)] != '1')
 			game->map.pos.x -= game->map.dir.x * speed;
 		if (game->map.map[(int)(game->map.pos.y - game->map.dir.y * speed)][(int)game->map.pos.x] != '1')
 			game->map.pos.y -= game->map.dir.y * speed;
 	}
-	if (key == K_RIGHT)
+	if (key == K_D)
+	{
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.plane.x * speed)] != '1')
+			game->map.pos.x += game->map.plane.x * speed;
+		if (game->map.map[(int)(game->map.pos.y + game->map.plane.y * speed)][(int)game->map.pos.x] != '1')
+			game->map.pos.y += game->map.plane.y * speed;
+	}
+	if (key == K_A)
+	{
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.plane.x * speed)] != '1')
+			game->map.pos.x -= game->map.plane.x * speed;
+		if (game->map.map[(int)(game->map.pos.y - game->map.plane.y * speed)][(int)game->map.pos.x] != '1')
+			game->map.pos.y -= game->map.plane.y * speed;
+	}
+	if (key == K_E || key == K_RIGHT)
 	{
 		double old_dir_x = game->map.dir.x;
 		game->map.dir.x = game->map.dir.x * cos(-rot) - game->map.dir.y * sin(-rot);
@@ -78,7 +92,7 @@ int		key_press(int key, t_game *game)
 		//printf("RIGHT %f, %f\n", game->map.dir.x, game->map.dir.y);
 		//printf("RIGHT %f, %f\n\n", game->map.plane.x, game->map.plane.y);
 	}
-	else if (key == K_LEFT)
+	else if (key == K_Q || key == K_LEFT)
 	{
 		double old_dir_x = game->map.dir.x;
 		game->map.dir.x = game->map.dir.x * cos(rot) - game->map.dir.y * sin(rot);

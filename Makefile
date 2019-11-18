@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/17 15:29:49 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/18 18:15:43 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,11 @@ SRC_PATH	=	main.c					\
 				init.c					\
 				display.c				\
 				raycasting.c			\
-				draw_vertical_line.c	\
+				draw.c					\
+				get_sprite.c			\
+				get_wall.c				\
+				get_hit_raycasting.c	\
+				sort_sprite.c			\
 
 SRC = $(addprefix $(D_SRC),$(SRC_PATH))
 

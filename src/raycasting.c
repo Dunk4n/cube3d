@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:07:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 19:14:30 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/18 20:13:50 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	display_sprite(t_map *map, t_tex *img)
 			draw_start.y = 0;
 		draw_end.y = sprite_height / 2 + map->res.y / 2;
 		if (draw_end.y >= map->res.y)
-			draw_end.y = map->res.y - 1;
+			draw_end.y = map->res.y;
 
 		sprite_width = ABS((int)(map->res.y / transform.y));
 		draw_start.x = -sprite_width / 2 + sprite_screen_x;
@@ -55,14 +55,14 @@ void	display_sprite(t_map *map, t_tex *img)
 			draw_start.x = 0;
 		draw_end.x = sprite_width / 2 + sprite_screen_x;
 		if (draw_end.x >= map->res.x)
-			draw_end.x = map->res.x - 1;
+			draw_end.x = map->res.x;
 
 		stripe = draw_start.x;
 		while (stripe < draw_end.x)
 		{
 			tex.x = (int)(256 * (stripe - (-sprite_width / 2 + sprite_screen_x))
 * map->tex[map->sprite[i].tex].size.x / sprite_width) / 256;
-			if (transform.y > 0 && stripe > 0 && stripe < map->res.x && transform.y < map->zbuffer[stripe])
+			if (transform.y > 0 && stripe >= 0 && stripe < map->res.x && transform.y < map->zbuffer[stripe])
 			{
 				y = draw_start.y;
 				while (y < draw_end.y)

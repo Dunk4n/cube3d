@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 20:02:31 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:53:46 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,60 +49,57 @@ int		key_released(int key, t_game *game)
 
 int		key_press(int key, t_game *game)
 {
-	double rot = 0.07;
+	double map->rot = 0.07;
 	double speed = 0.2;
 
-	if (key == K_W || key == K_UP)
+	if (key == K_W)
 	{
-		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.dir.x * speed)] != '1')
-			game->map.pos.x += game->map.dir.x * speed;
-		if (game->map.map[(int)(game->map.pos.y + game->map.dir.y * speed)][(int)game->map.pos.x] != '1')
-			game->map.pos.y += game->map.dir.y * speed;
+		map->key[P_W] = 1;
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.dir.x * map->speed)] != '1')
+			game->map.pos.x += game->map.dir.x * map->speed;
+		if (game->map.map[(int)(game->map.pos.y + game->map.dir.y * map->speed)][(int)game->map.pos.x] != '1')
+			game->map.pos.y += game->map.dir.y * map->speed;
 	}
-	if (key == K_S || key == K_DOWN)
+	if (key == K_S)
 	{
-		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.dir.x * speed)] != '1')
-			game->map.pos.x -= game->map.dir.x * speed;
-		if (game->map.map[(int)(game->map.pos.y - game->map.dir.y * speed)][(int)game->map.pos.x] != '1')
-			game->map.pos.y -= game->map.dir.y * speed;
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.dir.x * map->speed)] != '1')
+			game->map.pos.x -= game->map.dir.x * map->speed;
+		if (game->map.map[(int)(game->map.pos.y - game->map.dir.y * map->speed)][(int)game->map.pos.x] != '1')
+			game->map.pos.y -= game->map.dir.y * map->speed;
 	}
 	if (key == K_D)
 	{
-		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.plane.x * speed)] != '1')
-			game->map.pos.x += game->map.plane.x * speed;
-		if (game->map.map[(int)(game->map.pos.y + game->map.plane.y * speed)][(int)game->map.pos.x] != '1')
-			game->map.pos.y += game->map.plane.y * speed;
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x + game->map.plane.x * map->speed)] != '1')
+			game->map.pos.x += game->map.plane.x * map->speed;
+		if (game->map.map[(int)(game->map.pos.y + game->map.plane.y * map->speed)][(int)game->map.pos.x] != '1')
+			game->map.pos.y += game->map.plane.y * map->speed;
 	}
 	if (key == K_A)
 	{
-		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.plane.x * speed)] != '1')
-			game->map.pos.x -= game->map.plane.x * speed;
-		if (game->map.map[(int)(game->map.pos.y - game->map.plane.y * speed)][(int)game->map.pos.x] != '1')
-			game->map.pos.y -= game->map.plane.y * speed;
+		if (game->map.map[(int)game->map.pos.y][(int)(game->map.pos.x - game->map.plane.x * map->speed)] != '1')
+			game->map.pos.x -= game->map.plane.x * map->speed;
+		if (game->map.map[(int)(game->map.pos.y - game->map.plane.y * map->speed)][(int)game->map.pos.x] != '1')
+			game->map.pos.y -= game->map.plane.y * map->speed;
 	}
-	if (key == K_E || key == K_RIGHT)
+	if (key == K_RIGHT)
 	{
 		double old_dir_x = game->map.dir.x;
-		game->map.dir.x = game->map.dir.x * cos(-rot) - game->map.dir.y * sin(-rot);
-		game->map.dir.y = old_dir_x * sin(-rot) + game->map.dir.y * cos(-rot);
+		game->map.dir.x = game->map.dir.x * cos(-map->rot) - game->map.dir.y * sin(-map->rot);
+		game->map.dir.y = old_dir_x * sin(-map->rot) + game->map.dir.y * cos(-map->rot);
 
 		double old_plane_x = game->map.plane.x;
-		game->map.plane.x = game->map.plane.x * cos(-rot) - game->map.plane.y * sin(-rot);
-		game->map.plane.y = old_plane_x * sin(-rot) + game->map.plane.y * cos(-rot);
-		//printf("RIGHT %f, %f\n", game->map.dir.x, game->map.dir.y);
-		//printf("RIGHT %f, %f\n\n", game->map.plane.x, game->map.plane.y);
+		game->map.plane.x = game->map.plane.x * cos(-map->rot) - game->map.plane.y * sin(-map->rot);
+		game->map.plane.y = old_plane_x * sin(-map->rot) + game->map.plane.y * cos(-map->rot);
 	}
-	else if (key == K_Q || key == K_LEFT)
+	else if (key == K_LEFT)
 	{
 		double old_dir_x = game->map.dir.x;
-		game->map.dir.x = game->map.dir.x * cos(rot) - game->map.dir.y * sin(rot);
-		game->map.dir.y = old_dir_x * sin(rot) + game->map.dir.y * cos(rot);
+		game->map.dir.x = game->map.dir.x * cos(map->rot) - game->map.dir.y * sin(map->rot);
+		game->map.dir.y = old_dir_x * sin(map->rot) + game->map.dir.y * cos(map->rot);
 
 		double old_plane_x = game->map.plane.x;
-		game->map.plane.x = game->map.plane.x * cos(rot) - game->map.plane.y * sin(rot);
-		game->map.plane.y = old_plane_x * sin(rot) + game->map.plane.y * cos(rot);
-		//printf("LEFT %f, %f\n", game->map.dir.x, game->map.dir.y);
-		//printf("LEFT %f, %f\n\n", game->map.plane.x, game->map.plane.y);
+		game->map.plane.x = game->map.plane.x * cos(map->rot) - game->map.plane.y * sin(map->rot);
+		game->map.plane.y = old_plane_x * sin(map->rot) + game->map.plane.y * cos(map->rot);
 	}
 	return (0);
 }

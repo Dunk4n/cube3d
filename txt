@@ -5,8 +5,6 @@ gcc -I /usr/local/include src/main.c -L /usr/local/lib -lmlx -framework OpenGL -
 
 https://lodev.org/cgtutor/raycasting.html
 
-• Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur
-
 • En prévision du jour où deepthought aura des yeux pour évaluer votre projet,
 votre programme doit pouvoir sauver la première image rendue au format bmp
 lorsque le second argument est "–save".

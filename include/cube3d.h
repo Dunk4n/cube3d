@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 18:15:31 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:53:44 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ enum	raycasting_tab2f
 	DELTA_DIST, SIDE_DIST, NB_TAB2F
 };
 
+enum	key_pressed
+{
+	P_W, P_S, P_D, P_A, P_RIGHT, P_LEFT, NB_KEY_PRESSED
+}
+
 typedef union	u_color
 {
 	unsigned char	ARGB[4];
@@ -64,6 +69,17 @@ typedef struct	s_vec2f
 	double	x;
 	double	y;
 }				t_vec2f;
+
+typedef struct	s_sprite_draw
+{
+	t_vec2i	draw_start;
+	t_vec2i	draw_end;
+	t_vec2i	tex;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	t_vec2f	transform;
+}				t_sprite_draw;
 
 typedef	struct	s_tex
 {
@@ -101,6 +117,9 @@ typedef	struct	s_map
 	double		*zbuffer;
 	t_sprite	*sprite;
 	int			nb_sprite;
+	double		rot;
+	double		speed;
+	char		key[NB_KEY_PRESSED];
 }				t_map;
 
 typedef struct	s_game
@@ -130,5 +149,6 @@ void	draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw, t_vec3i tex);
 void	get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex);
 double	get_hit(t_map *map, t_vec2f ray_dir, int *side);
 void	sort_sprite(t_map *map);
+void	display_sprite(t_map *map, t_tex *img);
 
 #endif

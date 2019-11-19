@@ -6,11 +6,11 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 15:08:03 by niduches          #+#    #+#             */
-/*   Updated: 2019/10/10 15:08:34 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 16:07:53 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*my_strcpy(char *dest, char const *src)
+char	*ft_strcpy(char *dest, char const *src)
 {
 	int i;
 

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 12:53:44 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:15:19 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ enum	union_identifier
 	NO, WE, SO, EA, S, RE, F, C, NB_IDENTIFIER
 };
 
-enum	union_ARGB
-{
-	B, G, R, A
-};
-
 enum	raycasting_tab2i
 {
 	POS, STEP, NB_TAB2I
@@ -43,7 +38,12 @@ enum	raycasting_tab2f
 enum	key_pressed
 {
 	P_W, P_S, P_D, P_A, P_RIGHT, P_LEFT, NB_KEY_PRESSED
-}
+};
+
+enum	union_ARGB
+{
+	B, G, R, A
+};
 
 typedef union	u_color
 {
@@ -137,7 +137,7 @@ int		get_arg_color(int indice, t_map *map, char *line, void *mlx_ptr);
 int		get_map(int fd, char **line, t_map *map);
 char	*to_good_map(char *line, t_map *map, int nb);
 int		good_map(t_map *map);
-void	free_map(t_map *map, char *line, int fd, void *mlx_ptr);
+void	free_map(t_map *map, void *mlx_ptr);
 void	free_all(t_game *game);
 int		init_game(t_game *game, char *map_name);
 int		display(t_game *game);
@@ -150,5 +150,6 @@ void	get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex);
 double	get_hit(t_map *map, t_vec2f ray_dir, int *side);
 void	sort_sprite(t_map *map);
 void	display_sprite(t_map *map, t_tex *img);
+int		put_in_bmp(t_tex *img);
 
 #endif

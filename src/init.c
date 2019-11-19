@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 12:48:20 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 15:34:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	init_map(t_map *map)
 	map->zbuffer = NULL;
 	map->sprite = NULL;
 	map->nb_sprite = 0;
-	map->rot = 0.07;
-	map->speed = 0.2;
+	map->rot = 0.04;
+	map->speed = 0.08;
 	i = 0;
 	while (i < NB_KEY_PRESSED)
-		map->key[i] = 0;
+		map->key[i++] = 0;
 }
 
 int	init_game(t_game *game, char *map_name)

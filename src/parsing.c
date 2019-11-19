@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 17:30:36 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 14:59:26 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int			get_file(char *file_name, t_map *map, void *mlx_ptr)
 	}
 	if (ret <= 0 || !get_map(fd, &line, map))
 	{
-		free_map(map, line, fd, mlx_ptr);
+		free(line);
+		close(fd);
 		return (0);
 	}
 	close(fd);

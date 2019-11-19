@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:55:44 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 15:57:33 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 14:35:39 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ int		search_obstacle(t_map *map, t_vec2f *tab2f, t_vec2i *tab2i, int *side)
 		tab2i[POS].y += tab2i[STEP].y;
 		*side = 1;
 	}
+	if (tab2i[POS].y < 0 || tab2i[POS].y >= map->nb_line ||
+tab2i[POS].x < 0 || tab2i[POS].x >= map->line_size[tab2i[POS].y])
+		return (1);
+	if (tab2i[POS].x >= map->line_size[tab2i[POS].y - 1] ||
+tab2i[POS].x >= map->line_size[tab2i[POS].y + 1])
+		return (1);
 	return (map->map[tab2i[POS].y][tab2i[POS].x] == '1');
 }
 

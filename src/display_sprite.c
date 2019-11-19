@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 12:28:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 12:31:08 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 15:49:07 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,7 @@ draw.sprite_screen_x)) * map->tex[map->sprite[cnt.x].tex].size.x /
 draw.sprite_width) / 256;
 			if (draw.transform.y > 0 && cnt.y >= 0 && cnt.y < map->res.x &&
 draw.transform.y < map->zbuffer[cnt.y])
-			{
 				draw_sprite(map, img, &draw, cnt);
-			}
 			cnt.y++;
 		}
 		cnt.x++;

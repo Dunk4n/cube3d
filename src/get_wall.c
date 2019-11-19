@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:52:23 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 15:57:22 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/19 14:25:31 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double per_wall_dist)
 		draw->x = 0;
 	draw->y = tex->z / 2 + map->res.y / 2;
 	if (draw->y >= map->res.y)
-		draw->y = map->res.y - 1;
+		draw->y = map->res.y;
 }
 
 void	get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex)

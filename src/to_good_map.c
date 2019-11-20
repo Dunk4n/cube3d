@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:03 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/15 20:50:05 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:41:22 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	get_len_of_good_line(char *line)
 	return (len);
 }
 
-char	*to_good_map(char *line, t_map *map, int nb)
+char		*to_good_map(char *line, t_map *map, int nb)
 {
 	int		i;
 	int		len;

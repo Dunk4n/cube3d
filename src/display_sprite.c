@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 12:28:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 15:49:07 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:25:01 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	get_transform(t_map *map, t_sprite_draw *draw, int i)
 (map->dir.y * sprite_pos.x - map->dir.x * sprite_pos.y);
 	draw->transform.y = inv *
 (-map->plane.y * sprite_pos.x + map->plane.x * sprite_pos.y);
-
 	draw->sprite_screen_x = (int)((map->res.x / 2) *
 (1 + draw->transform.x / draw->transform.y));
 	draw->sprite_height = ABS((int)(map->res.y / draw->transform.y));
@@ -38,7 +37,6 @@ static void	get_draw(t_map *map, t_sprite_draw *draw)
 	draw->draw_end.y = draw->sprite_height / 2 + map->res.y / 2;
 	if (draw->draw_end.y >= map->res.y)
 		draw->draw_end.y = map->res.y;
-
 	draw->draw_start.x = -draw->sprite_width / 2 + draw->sprite_screen_x;
 	if (draw->draw_start.x < 0)
 		draw->draw_start.x = 0;

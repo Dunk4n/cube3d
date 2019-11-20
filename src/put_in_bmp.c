@@ -6,22 +6,13 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 15:56:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 23:31:59 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:33:32 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
 #include "cube3d.h"
-
-#define	swap_endian(num) (((num>>24)&0xff) | \
-                    ((num<<8)&0xff0000) | \
-                    ((num>>8)&0xff00) | \
-                    ((num<<24)&0xff000000))
-
-#define BYTES_PER_PIXEL 3
-#define FILE_HEADER_SIZE 14
-#define INFO_HEADER_SIZE 40
 
 void	put_bitmap_header(t_tex *img, int fd, int padding_size)
 {

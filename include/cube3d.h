@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 18:15:19 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:09:32 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,41 @@
 # include "../lib/libft/libft.h"
 # include "keys.h"
 
-# define CHAR_MAP "NSEW012"
+# define CHAR_MAP "NWSE012"
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 
-enum	union_identifier
+# define BYTES_PER_PIXEL 3
+# define FILE_HEADER_SIZE 14
+# define INFO_HEADER_SIZE 40
+
+enum	e_union_identifier
 {
 	NO, WE, SO, EA, S, RE, F, C, NB_IDENTIFIER
 };
 
-enum	raycasting_tab2i
+enum	e_raycasting_tab2i
 {
 	POS, STEP, NB_TAB2I
 };
 
-enum	raycasting_tab2f
+enum	e_raycasting_tab2f
 {
 	DELTA_DIST, SIDE_DIST, NB_TAB2F
 };
 
-enum	key_pressed
+enum	e_key_pressed
 {
 	P_W, P_S, P_D, P_A, P_RIGHT, P_LEFT, NB_KEY_PRESSED
 };
 
-enum	union_ARGB
+enum	e_union_argb
 {
 	B, G, R, A
 };
 
 typedef union	u_color
 {
-	unsigned char	ARGB[4];
+	unsigned char	argb[4];
 	unsigned int	color;
 }				t_color;
 

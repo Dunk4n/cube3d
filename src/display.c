@@ -6,32 +6,13 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 15:53:08 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:46:30 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <math.h>
 #include "cube3d.h"
-
-static void	clear_img(t_tex *img)
-{
-	int	i;
-	int	j;
-	int	size;
-
-	i = 0;
-	while (i < img->size.y)
-	{
-		j = 0;
-		while (j < img->size.x)
-		{
-			((int*)img->data)[j + (i * img->size_line)] = 0;
-			j++;
-		}
-		i++;
-	}
-}
 
 static void	move_to(t_map *map, t_vec2f dir, double speed)
 {
@@ -42,7 +23,7 @@ static void	move_to(t_map *map, t_vec2f dir, double speed)
 	if (x > 0 && x < map->line_size[(int)map->pos.y] && ((int)map->pos.y == 0 ||
 x < map->line_size[(int)map->pos.y - 1]) &&
 ((int)map->pos.y == map->nb_line - 1 || x < map->line_size[(int)map->pos.y + 1])
-&& map->map[(int)map->pos.y][x] != '1')
+	&& map->map[(int)map->pos.y][x] != '1')
 		map->pos.x += dir.x * speed;
 	y = (int)(map->pos.y + dir.y * speed);
 	if (y > 0 && y < map->nb_line && map->map[y][(int)map->pos.x] != '1')
@@ -71,15 +52,14 @@ static void	update_key(t_game *game)
 		move_to(&game->map, game->map.plane, game->map.speed);
 	if (game->map.key[P_A])
 		move_to(&game->map, game->map.plane, -game->map.speed);
-	if (game->map.key[P_LEFT])
-		rotate_to(&game->map, game->map.rot);
 	if (game->map.key[P_RIGHT])
+		rotate_to(&game->map, game->map.rot);
+	if (game->map.key[P_LEFT])
 		rotate_to(&game->map, -game->map.rot);
 }
 
 int			display(t_game *game)
 {
-//	clear_img(&game->img);
 	raycasting(&game->map, &game->img);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.tex, 0, 0);
 	update_key(game);

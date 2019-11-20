@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 17:28:38 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 18:17:21 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:33:11 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	sort_sprite(t_map *map)
 {
 	int			gap;
 	char		swapped;
-	int	i;
+	int			i;
 
 	i = 0;
 	while (i < map->nb_sprite)

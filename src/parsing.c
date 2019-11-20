@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 14:59:26 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:10:57 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	arg_full(t_map *map)
 {
 	return (map->res.x != -1 && map->tex[NO].tex && map->tex[SO].tex &&
 map->tex[WE].tex && map->tex[EA].tex && map->tex[S].tex &&
-map->floor.ARGB[A] == 0 && map->roof.ARGB[A] == 0);
+map->floor.argb[A] == 0 && map->roof.argb[A] == 0);
 }
 
 int		(*const g_arg_fonction[NB_IDENTIFIER])(int, t_map*, char*,

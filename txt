@@ -8,4 +8,4 @@ https://lodev.org/cgtutor/raycasting.html
 ◦ Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
 la taille de fenêtre doit être celle de l’écran.
 
-//taille ecrant, after >bmp exit?, NSEW origine map
+//taille ecrant, after >bmp exit? and name of file, NSEW origine map

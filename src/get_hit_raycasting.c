@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:55:44 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 14:35:39 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:25:49 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ tab2f[DELTA_DIST]);
 	if (*side == 0)
 		return ((tab2i[POS].x - map->pos.x +
 					(1 - tab2i[STEP].x) / 2) / ray_dir.x);
-	return ((tab2i[POS].y - map->pos.y + (1 - tab2i[STEP].y) / 2) / ray_dir.y);
+	else
+		return ((tab2i[POS].y - map->pos.y + (1 - tab2i[STEP].y) / 2) /
+ray_dir.y);
 }

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 16:10:45 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:32:32 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		main(int ac, char **av)
 		raycasting(&game.map, &game.img);
 		put_in_bmp(&game.img);
 	}
-
 	mlx_hook(game.win_ptr, 17, 0L, quit_game, (void*)(&game));
 	mlx_hook(game.win_ptr, 2, 1L << 0, key_press, (void*)(&game));
 	mlx_hook(game.win_ptr, 3, 1L << 1, key_released, (void*)(&game));

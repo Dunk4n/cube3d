@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/17 19:10:26 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:10:17 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,23 +73,23 @@ int		get_arg_color(int indice, t_map *map, char *line, void *mlx_ptr)
 	color = (indice == F) ? &(map->floor) : &(map->roof);
 	while (*line && ft_isspace(*line))
 		line++;
-	color->ARGB[R] = ft_atoi(line);
+	color->argb[R] = ft_atoi(line);
 	while (*line && ft_isdigit(*line))
 		line++;
 	if (*(line++) != ',')
 		return (0);
-	color->ARGB[G] = ft_atoi(line);
+	color->argb[G] = ft_atoi(line);
 	while (*line && ft_isdigit(*line))
 		line++;
 	if (*(line++) != ',')
 		return (0);
-	color->ARGB[B] = ft_atoi(line);
+	color->argb[B] = ft_atoi(line);
 	while (*line && ft_isdigit(*line))
 		line++;
 	while (*line && ft_isspace(*line))
 		line++;
 	if (*line)
 		return (0);
-	color->ARGB[A] = 0;
+	color->argb[A] = 0;
 	return (1);
 }

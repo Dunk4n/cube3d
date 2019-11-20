@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 15:34:36 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:10:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	init_map(t_map *map)
 	map->tex[EA].tex = NULL;
 	map->tex[S].tex = NULL;
 	map->floor.color = 0;
-	map->floor.ARGB[A] = 1;
+	map->floor.argb[A] = 1;
 	map->roof.color = 0;
-	map->roof.ARGB[A] = 1;
+	map->roof.argb[A] = 1;
 	map->map = NULL;
 	map->line_size = NULL;
 	map->nb_line = 0;
@@ -34,13 +34,13 @@ void	init_map(t_map *map)
 	map->sprite = NULL;
 	map->nb_sprite = 0;
 	map->rot = 0.04;
-	map->speed = 0.08;
+	map->speed = 0.1;
 	i = 0;
 	while (i < NB_KEY_PRESSED)
 		map->key[i++] = 0;
 }
 
-int	init_game(t_game *game, char *map_name)
+int		init_game(t_game *game, char *map_name)
 {
 	init_map(&(game->map));
 	game->win_ptr = NULL;

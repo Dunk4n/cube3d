@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:47:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 15:18:16 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:03:18 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ static int	no_border(t_map *map, int y, int x)
 	return (0);
 }
 
-static int	set_pos(t_map *map, int	ret, int x, int y)
-{
-	t_vec2f	dir[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-	t_vec2f	plane[] = {{0.66, 0}, {-0.66, 0}, {0, -0.66}, {0, 0.66}};
+const t_vec2f	g_dir[4] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
+const t_vec2f	g_plane[4] = {{0.66, 0}, {0, -0.66}, {-0.66, 0}, {0, 0.66}};
 
+static int	set_pos(t_map *map, int ret, int x, int y)
+{
 	if (ret < 4)
 	{
 		if (map->dir.x != -2)
 			return (0);
-		map->dir = dir[ret];
-		map->plane = plane[ret];
+		map->dir = g_dir[ret];
+		map->plane = g_plane[ret];
 		map->pos.x = (double)x + 0.5;
 		map->pos.y = (double)y + 0.5;
 		map->map[(int)y][(int)x] = '0';

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 21:22:43 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 15:05:18 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:23:09 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_map(t_map *map, void *mlx_ptr)
 
 	if (!map)
 		return ;
-	i= 0;
+	i = 0;
 	while (mlx_ptr && i <= S)
 	{
 		if (map->tex[i].tex)

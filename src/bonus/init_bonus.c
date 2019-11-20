@@ -6,12 +6,12 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 15:54:00 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 14:10:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 void	init_map(t_map *map)
 {
@@ -34,7 +34,7 @@ void	init_map(t_map *map)
 	map->sprite = NULL;
 	map->nb_sprite = 0;
 	map->rot = 0.04;
-	map->speed = 0.09;
+	map->speed = 0.1;
 	i = 0;
 	while (i < NB_KEY_PRESSED)
 		map->key[i++] = 0;

@@ -6,11 +6,11 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 21:38:57 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 21:39:09 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 {
@@ -62,6 +62,8 @@ int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr)
 	map->tex[indice].data = mlx_get_data_addr(map->tex[indice].tex,
 &(map->tex[indice].bits_per_pixel), &(map->tex[indice].size_line),
 &(map->tex[indice].endian));
+	map->tex[indice].size_int.x = map->tex[indice].size.x / 4;
+	map->tex[indice].size_int.y = map->tex[indice].size.y / 4;
 	return (1);
 }
 

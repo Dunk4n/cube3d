@@ -6,12 +6,12 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:52:23 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 17:19:38 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 18:10:00 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 double	get_ray_dir(t_map *map, int x, t_vec2f *ray_dir, int *side)
 {
@@ -37,25 +37,20 @@ double per_wall_dist)
 
 void	get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex)
 {
-	double	per_wall_dist;
-	double	wall_x;
-	t_vec2f	ray_dir;
-	int		side;
-
-	per_wall_dist = get_ray_dir(map, x, &ray_dir, &side);
-	map->zbuffer[x] = per_wall_dist;
-	get_draw_size(map, draw, tex, per_wall_dist);
-	wall_x = ((side == 0) ? map->pos.y + per_wall_dist * ray_dir.y :
-map->pos.x + per_wall_dist * ray_dir.x);
-	wall_x -= floor(wall_x);
-	tex->y = !side;
-	tex->x = (int)(wall_x * (double)map->tex[tex->y].size.y);
-	if (side == 0 && ray_dir.x > 0)
+	map->for_floor.per_wall_dist = get_ray_dir(map, x, &map->for_floor.ray_dir, &map->for_floor.side);
+	map->zbuffer[x] = map->for_floor.per_wall_dist;
+	get_draw_size(map, draw, tex, map->for_floor.per_wall_dist);
+	map->for_floor.wall_x = ((map->for_floor.side == 0) ? map->pos.y + map->for_floor.per_wall_dist * map->for_floor.ray_dir.y :
+map->pos.x + map->for_floor.per_wall_dist * map->for_floor.ray_dir.x);
+	map->for_floor.wall_x -= floor(map->for_floor.wall_x);
+	tex->y = !map->for_floor.side;
+	tex->x = (int)(map->for_floor.wall_x * (double)map->tex[tex->y].size.y);
+	if (map->for_floor.side == 0 && map->for_floor.ray_dir.x > 0)
 	{
 		tex->y += 2;
 		tex->x = map->tex[tex->y].size.x - tex->x - 1;
 	}
-	if (side == 1 && ray_dir.y < 0)
+	if (map->for_floor.side == 1 && map->for_floor.ray_dir.y < 0)
 	{
 		tex->y += 2;
 		tex->x = map->tex[tex->y].size.x - tex->x - 1;

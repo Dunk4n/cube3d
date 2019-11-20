@@ -6,13 +6,13 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 15:50:50 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/20 21:52:30 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <math.h>
-#include "cube3d.h"
+#include "cube3d_bonus.h"
 
 static void	move_to(t_map *map, t_vec2f dir, double speed)
 {
@@ -58,10 +58,19 @@ static void	update_key(t_game *game)
 		rotate_to(&game->map, -game->map.rot);
 }
 
+#include <time.h>
+clock_t	current_ticks = 0;
+clock_t	delta_ticks = 0;
 int			display(t_game *game)
 {
+	current_ticks = clock();
 	raycasting(&game->map, &game->img);
+
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.tex, 0, 0);
+
 	update_key(game);
+	delta_ticks = clock() - current_ticks;
+	if (delta_ticks > 0)
+		printf("fps : %lu\n", CLOCKS_PER_SEC / delta_ticks);
 	return (0);
 }

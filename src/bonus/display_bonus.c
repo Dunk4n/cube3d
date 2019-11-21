@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 21:52:30 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/21 14:31:17 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ x < map->line_size[(int)map->pos.y - 1]) &&
 		map->pos.y += dir.y * speed;
 }
 
-static void	rotate_to(t_map *map, double rot)
+void	rotate_to(t_map *map, double rot)
 {
 	double old;
 
@@ -63,14 +63,15 @@ clock_t	current_ticks = 0;
 clock_t	delta_ticks = 0;
 int			display(t_game *game)
 {
-	current_ticks = clock();
+//	current_ticks = clock();
 	raycasting(&game->map, &game->img);
 
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.tex, 0, 0);
 
 	update_key(game);
-	delta_ticks = clock() - current_ticks;
+/*	delta_ticks = clock() - current_ticks;
 	if (delta_ticks > 0)
 		printf("fps : %lu\n", CLOCKS_PER_SEC / delta_ticks);
+		*/
 	return (0);
 }

@@ -11,9 +11,9 @@ la taille de fenêtre doit être celle de l’écran.
 taille ecrant, after >bmp exit? and name of file, NSEW origine map
 
 ◦ Collision contre les murs
-• Texture sur le sol ou le plafond.
+◦ Texture sur le sol ou le plafond.
+◦ Un effet d’ombre basé sur la distance.
 
-• Un effet d’ombre basé sur la distance.
 • Un HUD.
 • Une barre de vie.
 • Sauter ou s’accroupir.

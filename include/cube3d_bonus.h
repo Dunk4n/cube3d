@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 21:39:34 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/21 16:34:30 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 
 enum	e_union_identifier
 {
-	NO, WE, SO, EA, S, RE, F, C, NB_IDENTIFIER
+	NO, WE, SO, EA, S, F, C, RE, NB_IDENTIFIER
 };
 
 enum	e_raycasting_tab2i
@@ -112,14 +112,18 @@ typedef	struct	s_floor
 	int		side;
 }				t_floor;
 
+enum	e_game_tex
+{
+	LIFE, TORCH1, TORCH2, TORCH3, TORCH4, NB_GAME_TEX
+};
+
 typedef	struct	s_map
 {
 	t_vec2i		res;
+	int			height_d2;
 
-	t_tex		tex[5];
-
-	t_color		floor;
-	t_color		roof;
+	t_tex		tex[7];
+	t_tex		tex_game[NB_GAME_TEX];
 
 	char		**map;
 	int			*line_size;
@@ -136,6 +140,7 @@ typedef	struct	s_map
 	char		key[NB_KEY_PRESSED];
 
 	t_floor		for_floor;
+	double		*dist;
 }				t_map;
 
 typedef struct	s_game
@@ -149,7 +154,6 @@ typedef struct	s_game
 int		get_file(char *file_name, t_map *map, void *mlx_ptr);
 int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr);
 int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr);
-int		get_arg_color(int indice, t_map *map, char *line, void *mlx_ptr);
 int		get_map(int fd, char **line, t_map *map);
 char	*to_good_map(char *line, t_map *map, int nb);
 int		good_map(t_map *map);

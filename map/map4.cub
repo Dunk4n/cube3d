@@ -1,10 +1,10 @@
-R 960 540
+R 1920 1080
 NO ./img/stone1.xpm
 SO ./img/wall1.xpm
 WE ./img/wood.xpm
 EA ./img/stone5.xpm
 
-S ./img/knight.xpm
+S img/knight.xpm
 F 0,150,40
 C 0,40,150
 

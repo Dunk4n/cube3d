@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 21:22:43 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 13:23:09 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/21 17:11:15 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	free_map_sprite(t_map *map)
 	map->zbuffer = NULL;
 	free(map->sprite);
 	map->sprite = NULL;
+	free(map->dist);
+	map->dist = NULL;
 }
 
 void	free_map(t_map *map, void *mlx_ptr)
@@ -30,11 +32,17 @@ void	free_map(t_map *map, void *mlx_ptr)
 	if (!map)
 		return ;
 	i = 0;
-	while (mlx_ptr && i <= S)
+	while (mlx_ptr && i <= C)
 	{
 		if (map->tex[i].tex)
 			mlx_destroy_image(mlx_ptr, map->tex[i].tex);
 		map->tex[i++].tex = NULL;
+	}
+	while (mlx_ptr && i <= NB_GAME_TEX)
+	{
+		if (map->tex_game[i].tex)
+			mlx_destroy_image(mlx_ptr, map->tex_game[i].tex);
+		map->tex_game[i++].tex = NULL;
 	}
 	if (!map->map)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 18:47:27 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/21 12:23:31 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		key_press(int key, t_game *game)
 	return (0);
 }
 
+void	rotate_to(t_map *map, double rot);
 int		main(int ac, char **av)
 {
 	t_game	game;
@@ -70,7 +71,9 @@ int		main(int ac, char **av)
 	}
 	if (ac == 3 && !ft_strcmp(av[2], "--save"))
 	{
+		rotate_to(&game.map, -game.map.rot * 100);
 		raycasting(&game.map, &game.img);
+		return (0);
 		put_in_bmp(&game.img);
 	}
 	mlx_hook(game.win_ptr, 17, 0L, quit_game, (void*)(&game));

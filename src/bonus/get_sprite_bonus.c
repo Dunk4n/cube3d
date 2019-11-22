@@ -6,12 +6,26 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:31:02 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/18 19:16:08 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 21:19:42 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "cube3d_bonus.h"
+
+static int	value_sprite(char c)
+{
+	int	i;
+
+	i = 0;
+	while (CHAR_SPRITE[i])
+	{
+		if (CHAR_SPRITE[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
 
 static int	get_nb_sprite(t_map *map)
 {
@@ -26,7 +40,7 @@ static int	get_nb_sprite(t_map *map)
 		j = 0;
 		while (j < map->line_size[i])
 		{
-			if (map->map[i][j] == '2')
+			if (value_sprite(map->map[i][j]) >= 0)
 				nb++;
 			j++;
 		}
@@ -34,6 +48,8 @@ static int	get_nb_sprite(t_map *map)
 	}
 	return (nb);
 }
+
+const int	sprite_num[] = {NB_GAME_TEX, GUN, SKULL, COMPANION, DOOR, TDOOR};
 
 static int	set_sprite(t_map *map)
 {
@@ -48,13 +64,14 @@ static int	set_sprite(t_map *map)
 		j = 0;
 		while (j < map->line_size[i])
 		{
-			if (map->map[i][j] == '2')
+			if (value_sprite(map->map[i][j]) >= 0)
 			{
-				map->sprite[nb].tex = 4;
+				map->sprite[nb].tex = sprite_num[value_sprite(map->map[i][j])];
+				map->sprite[nb].tmp = (map->sprite[nb].tex == DOOR) ? TDOOR : 0;
+				map->sprite[nb].time = -1;
 				map->sprite[nb].dist = 0;
 				map->sprite[nb].pos.x = (double)j + 0.5;
-				map->sprite[nb].pos.y = (double)i + 0.5;
-				nb++;
+				map->sprite[nb++].pos.y = (double)i + 0.5;
 			}
 			j++;
 		}

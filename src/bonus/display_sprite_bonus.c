@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 12:28:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 22:01:37 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 18:12:26 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	get_transform(t_map *map, t_sprite_draw *draw, int i)
 
 static void	get_draw(t_map *map, t_sprite_draw *draw)
 {
-	draw->draw_start.y = -draw->sprite_height / 2 + map->res.y / 2;
+	draw->draw_start.y = -draw->sprite_height / 2 + map->height_d2 + map->h;
 	if (draw->draw_start.y < 0)
 		draw->draw_start.y = 0;
-	draw->draw_end.y = draw->sprite_height / 2 + map->res.y / 2;
+	draw->draw_end.y = draw->sprite_height / 2 + map->height_d2 + map->h;
 	if (draw->draw_end.y >= map->res.y)
 		draw->draw_end.y = map->res.y;
 	draw->draw_start.x = -draw->sprite_width / 2 + draw->sprite_screen_x;
@@ -55,11 +55,11 @@ t_vec2i cnt, double fact)
 	y = draw->draw_start.y;
 	while (y < draw->draw_end.y)
 	{
-		d = y * 256 - map->res.y * 128 + draw->sprite_height * 128;
-		draw->tex.y = ((d * map->tex[map->sprite[cnt.x].tex].size.y) /
+		d = (y - map->h) * 256 - map->res.y * 128 + draw->sprite_height * 128;
+		draw->tex.y = ((d * map->tex_game[map->sprite[cnt.x].tex].size.y) /
 draw->sprite_height) / 256;
-		color.color = ((int*)map->tex[map->sprite[cnt.x].tex].data)[draw->tex.y *
-			map->tex[map->sprite[cnt.x].tex].size.x + draw->tex.x];
+		color.color = ((int*)map->tex_game[map->sprite[cnt.x].tex].data)[draw->tex.y
+* map->tex_game[map->sprite[cnt.x].tex].size.x + draw->tex.x];
 		if ((color.color & 0x00ffffff) != 0)
 		{
 			color.argb[R] *= fact;
@@ -98,7 +98,7 @@ void		display_sprite(t_map *map, t_tex *img)
 		while (cnt.y < draw.draw_end.x)
 		{
 			draw.tex.x = (int)(256 * (cnt.y - (-draw.sprite_width / 2 +
-draw.sprite_screen_x)) * map->tex[map->sprite[cnt.x].tex].size.x /
+draw.sprite_screen_x)) * map->tex_game[map->sprite[cnt.x].tex].size.x /
 draw.sprite_width) / 256;
 			if (draw.transform.y > 0 && cnt.y >= 0 && cnt.y < map->res.x &&
 draw.transform.y < map->zbuffer[cnt.y])

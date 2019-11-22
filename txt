@@ -5,26 +5,23 @@ gcc -I /usr/local/include src/main.c -L /usr/local/lib -lmlx -framework OpenGL -
 
 https://lodev.org/cgtutor/raycasting.html
 
-◦ Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
-la taille de fenêtre doit être celle de l’écran.
-
-taille ecrant, after >bmp exit? and name of file, NSEW origine map
-
 ◦ Collision contre les murs
 ◦ Texture sur le sol ou le plafond.
 ◦ Un effet d’ombre basé sur la distance.
+◦ Une barre de vie.
+◦ Collision avec les objets.
 
-• Un HUD.
-• Une barre de vie.
-• Sauter ou s’accroupir.
-• Possibilité de regarder en haut et en bas.
-• Une skybox.
-• Plus d’objets dans le labyrinthe.
-• Collision avec les objets.
-• Gain ou perte de points/de vie en prenant des objets/pièges.
-• Porte qui peuvent être ouvertes/fermées.
-• Portes secrètes.
-• Plusieurs niveaux.
-• Animations (tir d’arme ou des sprites animés).
+◦ Possibilité de regarder en haut et en bas.
+◦ Animations (tir d’arme ou des sprites animés).
+◦ Gain ou perte de points/de vie en prenant des objets/pièges.
+◦ Plus d’objets dans le labyrinthe.
+◦ Un HUD.
+◦ Portes secrètes.
+◦ Porte qui peuvent être ouvertes/fermées.
+
 • Des armes et des méchants à combattre !
 • Son et musique.
+• Plusieurs niveaux.
+
+• Sauter ou s’accroupir.
+• Une skybox.

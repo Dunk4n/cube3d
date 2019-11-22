@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 13:32:32 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 21:01:47 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int		key_released(int key, t_game *game)
 		game->map.key[P_RIGHT] = 0;
 	else if (key == K_LEFT)
 		game->map.key[P_LEFT] = 0;
+	if (key == K_SPACE)
+		game->map.key[P_RIGHT] = 0;
 	return (0);
 }
 
@@ -60,7 +62,7 @@ int		main(int ac, char **av)
 {
 	t_game	game;
 
-	if (ac != 2 && (ac != 3 || ft_strcmp(av[2], "--save")))
+	if (ac != 2 && (ac != 3 || ft_strcmp(av[2], "-save")))
 		return (0);
 	if (!init_game(&game, av[1]))
 	{
@@ -68,10 +70,11 @@ int		main(int ac, char **av)
 		free_all(&game);
 		return (0);
 	}
-	if (ac == 3 && !ft_strcmp(av[2], "--save"))
+	if (ac == 3 && !ft_strcmp(av[2], "-save"))
 	{
 		raycasting(&game.map, &game.img);
 		put_in_bmp(&game.img);
+		return (0);
 	}
 	mlx_hook(game.win_ptr, 17, 0L, quit_game, (void*)(&game));
 	mlx_hook(game.win_ptr, 2, 1L << 0, key_press, (void*)(&game));

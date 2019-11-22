@@ -6,11 +6,20 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/21 17:03:32 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 14:34:34 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d_bonus.h"
+
+void	check_scree_size(t_map *map)
+{
+	if (map->res.x > 1920)
+		map->res.x = 1920;
+	if (map->res.y > 1080)
+		map->res.y = 1080;
+	map->height_d2 = map->res.y / 2;
+}
 
 int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 {
@@ -31,13 +40,13 @@ int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 	if (!ft_isdigit(line[i]))
 		return (0);
 	map->res.y = ft_atoi(line + i);
-	map->height_d2 = map->res.y / 2;
 	while (line[i] && ft_isdigit(line[i]))
 		i++;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
 	if (line[i])
 		return (0);
+	check_scree_size(map);
 	return (1);
 }
 

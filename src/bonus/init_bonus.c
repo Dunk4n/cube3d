@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/21 17:16:17 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 21:39:24 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	init_map(t_map *map)
 	map->zbuffer = NULL;
 	map->sprite = NULL;
 	map->nb_sprite = 0;
-	map->rot = 0.04;
+	map->rot = 0.05;
 	map->speed = 0.1;
 	map->dist = NULL;
 	i = 0;
@@ -40,7 +40,12 @@ static void	init_map(t_map *map)
 
 const char	*g_tex_game[NB_GAME_TEX] = {"img/bonus/life.xpm",
 "img/bonus/torch1.xpm", "img/bonus/torch2.xpm", "img/bonus/torch3.xpm",
-"img/bonus/torch4.xpm"};
+"img/bonus/torch4.xpm", "img/bonus/knife1.xpm", "img/bonus/knife2.xpm",
+"img/bonus/knife3.xpm", "img/bonus/knife4.xpm", "img/bonus/knife5.xpm",
+"img/bonus/gun1.xpm", "img/bonus/gun2.xpm", "img/bonus/gun3.xpm",
+"img/bonus/gun4.xpm", "img/bonus/gun5.xpm", "img/bonus/gun.xpm",
+"img/bonus/skull.xpm", "img/bonus/companion.xpm", "img/bonus/ammo.xpm",
+"img/bonus/door.xpm", "img/bonus/tdoor.xpm"};
 
 static int	get_all_tex(t_map *map, void *mlx_ptr)
 {
@@ -57,14 +62,27 @@ static int	get_all_tex(t_map *map, void *mlx_ptr)
 &(map->tex_game[i].endian));
 		map->tex_game[i].size_int.x = map->tex_game[i].size.x / 4;
 		map->tex_game[i].size_int.y = map->tex_game[i].size.y / 4;
+		map->tex_game[i].size_line /= 4;
 		i++;
 	}
+	map->tex_game[i] = map->tex[4];
 	return (1);
+}
+
+static void	init_var_game(t_game *game)
+{
+	game->anim_torch = 0;
+	game->anim_weapon = -1;
+	game->ammo = -1;
+	game->vie_max = 100;
+	game->vie = game->vie_max;
+	game->map.h = 0;
+	init_map(&(game->map));
 }
 
 int			init_game(t_game *game, char *map_name)
 {
-	init_map(&(game->map));
+	init_var_game(game);
 	game->win_ptr = NULL;
 	game->img.tex = NULL;
 	if (!(game->mlx_ptr = mlx_init()))

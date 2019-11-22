@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 12:57:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/21 14:28:11 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:45:07 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,24 @@ void	draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw, t_vec3i tex)
 	t_color	color;
 	double	fact;
 
-	if (map->zbuffer[draw.z] > 7)
-		return ;
-	fact = map->zbuffer[draw.z] / 10 + 0.5;
-	if (fact < 0.2)
-		fact = 0.2;
-	if (fact > 1)
-		fact = 1;
-	fact = 1 - fact;
+//	if (map->zbuffer[draw.z] > 7)
+//		return ;
+//	fact = map->zbuffer[draw.z] / 10 + 0.5;
+//	if (fact < 0.2)
+//		fact = 0.2;
+//	if (fact > 1)
+//		fact = 1;
+//	fact = 1 - fact;
 	y = draw.x;
 	while (y < draw.y)
 	{
-		d = y * 256 - map->res.y * 128 + tex.z * 128;
+		d = (y - map->h) * 256 - map->res.y * 128 + tex.z * 128;
 		tex_y = ((d * map->tex[tex.y].size.y) / tex.z) / 256;
 		color.color = ((int*)map->tex[tex.y].data)[tex.x +
 (tex_y * map->tex[tex.y].size.x)];
-		color.argb[R] *= fact;
-		color.argb[G] *= fact;
-		color.argb[B] *= fact;
+//		color.argb[R] *= fact;
+//		color.argb[G] *= fact;
+//		color.argb[B] *= fact;
 		((int*)img->data)[draw.z + (y * img->size_line)] = color.color;
 		y++;
 	}

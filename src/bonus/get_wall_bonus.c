@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:52:23 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 18:10:00 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 16:25:26 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	get_draw_size(t_map *map, t_vec3i *draw, t_vec3i *tex,
 double per_wall_dist)
 {
 	tex->z = (int)(map->res.y / per_wall_dist);
-	draw->x = -tex->z / 2 + map->res.y / 2;
+	draw->x = -tex->z / 2 + map->height_d2 + map->h;
 	if (draw->x < 0)
 		draw->x = 0;
-	draw->y = tex->z / 2 + map->res.y / 2;
+	draw->y = tex->z / 2 + map->height_d2 + map->h;
 	if (draw->y >= map->res.y)
 		draw->y = map->res.y;
 }

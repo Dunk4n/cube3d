@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:07:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/21 15:17:21 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 16:58:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	draw_floor(t_map *map, t_tex *img, t_vec2f *floor_wall, t_vec3i draw)
 	floor_tex2.x = (int)(current_floor.x * map->tex[C].size.x) % map->tex[C].size_int.x;
 	floor_tex2.y = (int)(current_floor.y * map->tex[C].size.y) % map->tex[C].size_int.y;
 
-//	printf("x = %d, y = %d, dist = %f, per_wall_dist = %f, weight = %f\n", draw.z, draw.x, current_dist, map->for_floor.per_wall_dist, weight);
 	fact = current_dist / 5;
 	if (fact > 1)
 		fact = 1;
@@ -125,7 +124,8 @@ void	raycasting(t_map *map, t_tex *img)
 		map->for_floor.per_wall_dist = 1 / map->for_floor.per_wall_dist;
 		if (map->dist[0] == -1)
 			get_dist(map, map->dist, draw);
-		display_floor(map, img, draw);
+		if (!map->h)
+			display_floor(map, img, draw);
 		x++;
 	}
 	sort_sprite(map);

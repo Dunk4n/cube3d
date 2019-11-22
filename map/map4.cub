@@ -1,4 +1,4 @@
-R 1920 1080
+R 3000 3000
 NO ./img/stone1.xpm
 SO ./img/wall1.xpm
 WE ./img/wood.xpm

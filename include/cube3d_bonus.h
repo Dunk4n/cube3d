@@ -6,18 +6,21 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/21 16:34:30 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 21:45:37 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+# include <time.h>
 # include <mlx.h>
 # include "../lib/libft/libft.h"
 # include "keys.h"
 
-# define CHAR_MAP "NWSE012"
+# define CHAR_MAP "NWSE01234567"
+# define CHAR_SPRITE "23457"
+# define CAN_WALK "0345"
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 
 # define BYTES_PER_PIXEL 3
@@ -41,7 +44,7 @@ enum	e_raycasting_tab2f
 
 enum	e_key_pressed
 {
-	P_W, P_S, P_D, P_A, P_RIGHT, P_LEFT, NB_KEY_PRESSED
+	P_W, P_S, P_D, P_A, P_RIGHT, P_LEFT, P_E, P_Q, NB_KEY_PRESSED
 };
 
 enum	e_union_argb
@@ -99,6 +102,8 @@ typedef	struct	s_tex
 typedef struct	s_sprite
 {
 	int		tex;
+	int		tmp;
+	int		time;
 	double	dist;
 	t_vec2f	pos;
 }				t_sprite;
@@ -114,7 +119,9 @@ typedef	struct	s_floor
 
 enum	e_game_tex
 {
-	LIFE, TORCH1, TORCH2, TORCH3, TORCH4, NB_GAME_TEX
+	LIFE, TORCH1, TORCH2, TORCH3, TORCH4, KNIFE1, KNIFE2, KNIFE3, KNIFE4,
+KNIFE5, GUN1, GUN2, GUN3, GUN4, GUN5, GUN, SKULL, COMPANION, AMMO, DOOR, TDOOR,
+NB_GAME_TEX
 };
 
 typedef	struct	s_map
@@ -123,7 +130,7 @@ typedef	struct	s_map
 	int			height_d2;
 
 	t_tex		tex[7];
-	t_tex		tex_game[NB_GAME_TEX];
+	t_tex		tex_game[NB_GAME_TEX + 1];
 
 	char		**map;
 	int			*line_size;
@@ -141,6 +148,7 @@ typedef	struct	s_map
 
 	t_floor		for_floor;
 	double		*dist;
+	int			h;
 }				t_map;
 
 typedef struct	s_game
@@ -149,6 +157,11 @@ typedef struct	s_game
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_tex	img;
+	int		ammo;
+	int		anim_torch;
+	int		anim_weapon;
+	int		vie;
+	int		vie_max;
 }				t_game;
 
 int		get_file(char *file_name, t_map *map, void *mlx_ptr);
@@ -171,5 +184,6 @@ void	sort_sprite(t_map *map);
 void	display_sprite(t_map *map, t_tex *img);
 int		put_in_bmp(t_tex *img);
 double	get_hit(t_map *map, t_vec2f ray_dir, int *side);
+int		quit_game(t_game *game);
 
 #endif

@@ -6,11 +6,19 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 21:38:57 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 14:27:46 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	check_scree_size(t_map *map)
+{
+	if (map->res.x > 1920)
+		map->res.x = 1920;
+	if (map->res.y > 1080)
+		map->res.y = 1080;
+}
 
 int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 {
@@ -37,6 +45,7 @@ int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 		i++;
 	if (line[i])
 		return (0);
+	check_scree_size(map);
 	return (1);
 }
 

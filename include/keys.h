@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 13:18:52 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 14:07:34 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/22 21:02:33 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@
 #  define K_RIGHT 124
 #  define K_DOWN 125
 #  define K_UP 126
+
+#  define K_SPACE 49
 
 # endif
 

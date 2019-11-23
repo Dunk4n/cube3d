@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:31:02 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 21:19:42 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/23 16:13:55 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	get_nb_sprite(t_map *map)
 	return (nb);
 }
 
-const int	sprite_num[] = {NB_GAME_TEX, GUN, SKULL, COMPANION, DOOR, TDOOR};
+const int	sprite_num[] = {NB_GAME_TEX, GUN, SKULL, COMPANION, DOOR, KEY, 
+MONSTER};
 
 static int	set_sprite(t_map *map)
 {
@@ -67,7 +68,7 @@ static int	set_sprite(t_map *map)
 			if (value_sprite(map->map[i][j]) >= 0)
 			{
 				map->sprite[nb].tex = sprite_num[value_sprite(map->map[i][j])];
-				map->sprite[nb].tmp = (map->sprite[nb].tex == DOOR) ? TDOOR : 0;
+				map->sprite[nb].tmp = (map->sprite[nb].tex == DOOR) ? TDOOR : 5;
 				map->sprite[nb].time = -1;
 				map->sprite[nb].dist = 0;
 				map->sprite[nb].pos.x = (double)j + 0.5;

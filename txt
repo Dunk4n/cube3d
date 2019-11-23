@@ -5,23 +5,23 @@ gcc -I /usr/local/include src/main.c -L /usr/local/lib -lmlx -framework OpenGL -
 
 https://lodev.org/cgtutor/raycasting.html
 
-◦ Collision contre les murs
-◦ Texture sur le sol ou le plafond.
-◦ Un effet d’ombre basé sur la distance.
-◦ Une barre de vie.
-◦ Collision avec les objets.
+1 Collision contre les murs
+2 Texture sur le sol ou le plafond.
+3 Un effet d’ombre basé sur la distance.
+4 Une barre de vie.
+5 Collision avec les objets.
 
-◦ Possibilité de regarder en haut et en bas.
-◦ Animations (tir d’arme ou des sprites animés).
-◦ Gain ou perte de points/de vie en prenant des objets/pièges.
-◦ Plus d’objets dans le labyrinthe.
-◦ Un HUD.
-◦ Portes secrètes.
-◦ Porte qui peuvent être ouvertes/fermées.
+6 Possibilité de regarder en haut et en bas.
+6.5 Animations (tir d’arme ou des sprites animés).
+7 Gain ou perte de points/de vie en prenant des objets/pièges.
+7.5 Plus d’objets dans le labyrinthe.
+8 Un HUD.
+8.5 Portes secrètes.
+9 Porte qui peuvent être ouvertes/fermées.
+9.5 Plusieurs niveaux.
+10 Des armes et des méchants à combattre !
 
-• Des armes et des méchants à combattre !
 • Son et musique.
-• Plusieurs niveaux.
 
 • Sauter ou s’accroupir.
 • Une skybox.

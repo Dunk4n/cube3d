@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/22 15:01:00 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/23 15:55:56 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRC_PATH_BONUS	=	main_bonus.c				\
 					sort_sprite_bonus.c			\
 					display_sprite_bonus.c		\
 					put_in_bmp_bonus.c			\
+					attack.c					\
 
 SRC_BONUS = $(addprefix $(D_SRC_BONUS),$(SRC_PATH_BONUS))
 

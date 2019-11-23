@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 22:55:53 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/23 17:40:51 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,31 @@ static int	can_walk(char c)
 
 static void	check_if_obj(t_game *game, char *c, int x, int y)
 {
+	t_sprite	*sp;
+
 	if (*c == '0')
 		return ;
 	if (*c == '3')
 		game->ammo = 6;
 	else if (*c == '4')
 	{
-		game->vie -= 1;
+		game->vie -= 15;
 		if (game->vie < 0)
 			game->vie = 0;
 	}
 	else if (*c == '5')
 	{
-		game->vie += 1;
+		game->vie += 3;
 		if (game->vie > game->vie_max)
-			game->vie = 100;
+			game->vie = game->vie_max;
+	}
+	else if (*c == '8' && game->key == 0)
+	{
+		*c = '0';
+		game->key = 1;
+		sp = search_sprite(game->map, (int)game->map->pos.x,
+(int)game->map->pos.y);
+		sp->tmp = -1;
 	}
 }
 
@@ -75,18 +85,21 @@ static void	rotate_to(t_map *map, double rot)
 
 static void	update_key(t_game *game)
 {
-	if (game->map.key[P_W])
-		move_to(&game->map, game->map.dir, game->map.speed);
-	if (game->map.key[P_S])
-		move_to(&game->map, game->map.dir, -game->map.speed);
-	if (game->map.key[P_D])
-		move_to(&game->map, game->map.plane, game->map.speed);
-	if (game->map.key[P_A])
-		move_to(&game->map, game->map.plane, -game->map.speed);
-	if (game->map.key[P_RIGHT] || game->map.key[P_E])
-		rotate_to(&game->map, game->map.rot);
-	if (game->map.key[P_LEFT] || game->map.key[P_Q])
-		rotate_to(&game->map, -game->map.rot);
+	float	fact;
+
+	fact = (game->map->key[P_SHIFT]) ? 2 : 1;
+	if (game->map->key[P_W])
+		move_to(game->map, game->map->dir, game->map->speed * fact);
+	if (game->map->key[P_S])
+		move_to(game->map, game->map->dir, -game->map->speed * fact);
+	if (game->map->key[P_D])
+		move_to(game->map, game->map->plane, game->map->speed * fact);
+	if (game->map->key[P_A])
+		move_to(game->map, game->map->plane, -game->map->speed * fact);
+	if (game->map->key[P_RIGHT] || game->map->key[P_E])
+		rotate_to(game->map, game->map->rot);
+	if (game->map->key[P_LEFT] || game->map->key[P_Q])
+		rotate_to(game->map, -game->map->rot);
 }
 
 void		put_pixel(t_tex *img, int color, int x, int y)
@@ -130,10 +143,11 @@ void		display_hud(t_game *game, t_tex *img)
 	draw_square(img, (t_vec2i){img->size.x / 14, img->size.y / 9},
 (t_vec2i){img->size.x / 4.9 * ((float)game->vie / (float)game->vie_max),
 img->size.y / 24}, 0x0000FF00);
-	put_img(img, &game->map.tex_game[LIFE], (t_vec2f){0, 0}, (t_vec2f){3, 4});
-	put_img(img, &game->map.tex_game[game->anim_torch / 5 + TORCH1],
+	put_img(img, &game->map->tex_game[LIFE], (t_vec2f){0, 0}, (t_vec2f){3, 4});
+	if (game->ammo <= 0)
+		put_img(img, &game->map->tex_game[game->anim_torch / 5 + TORCH1],
 (t_vec2f){1, 1}, (t_vec2f){5, 2});
-	put_img(img, &game->map.tex_game[game->anim_weapon / 5 +
+	put_img(img, &game->map->tex_game[game->anim_weapon / 5 +
 ((game->ammo > 0) ? GUN1 : KNIFE1)], (t_vec2f){0, 0}, (t_vec2f){1, 1});
 	game->anim_torch = (game->anim_torch + 1) % 20;
 	if (game->anim_weapon >= 0)
@@ -142,10 +156,11 @@ img->size.y / 24}, 0x0000FF00);
 		game->anim_weapon = -1;
 	i = 0;
 	while (i < game->ammo - 1)
-	{
-		put_img(img, &game->map.tex_game[AMMO], (t_vec2f){i, 0}, (t_vec2f){15, 15});
-		i++;
-	}
+		put_img(img, &game->map->tex_game[AMMO], (t_vec2f){i++, 0},
+(t_vec2f){15, 15});
+	if (game->key)
+		put_img(img, &game->map->tex_game[KEY_HUD], (t_vec2f){0, 7},
+(t_vec2f){8, 8});
 }
 
 void		update_sprite(t_game *game)
@@ -155,20 +170,26 @@ void		update_sprite(t_game *game)
 	t_sprite	*sp;
 
 	i = 0;
-	while (i < game->map.nb_sprite)
+	while (i < game->map->nb_sprite)
 	{
-		sp = &game->map.sprite[i];
+		sp = &game->map->sprite[i];
+		if (sp->tex == MONSTER && sp->tmp > 0)
+		{
+			if ((game->map->pos.x - sp->pos.x) * (game->map->pos.x - sp->pos.x)
++ (game->map->pos.y - sp->pos.y) * (game->map->pos.y - sp->pos.y) <= 1.5)
+				game->vie -= 3;
+		}
 		if (sp->time > 0)
 		{
 			sp->time--;
 		}
 		if (sp->tex == TDOOR && sp->time == 0 && ((int)sp->pos.x !=
-(int)game->map.pos.x || (int)sp->pos.y != (int)game->map.pos.y))
+(int)game->map->pos.x || (int)sp->pos.y != (int)game->map->pos.y))
 		{
 			tmp = sp->tmp;
 			sp->tmp = sp->tex;
 			sp->tex = tmp;
-			game->map.map[(int)sp->pos.y][(int)sp->pos.x] = '7';
+			game->map->map[(int)sp->pos.y][(int)sp->pos.x] = '7';
 		}
 		i++;
 	}
@@ -190,11 +211,13 @@ void		display_map(t_map *map, t_tex *img)
 		j = 0;
 		while (j < map->line_size[i] && j < 100 && pos + (j + 1) * size < map->res.x)
 		{
-			color = 0;
+			color = 0x0000FF00;
 			if (map->map[i][j] == '1' || map->map[i][j] == '6')
 				color = 0x00FFFFFF;
-			else if (map->map[i][j] != '0')
-				color = 0x0000FF00;
+			else if (map->map[i][j] == '9' || map->map[i][j] == '4')
+				color = 0x00FF0000;
+			else if (map->map[i][j] == '0')
+				color = 0;
 			draw_square(img, (t_vec2i){pos + j * size, i * size},
 (t_vec2i){size, size}, color);
 			j++;
@@ -202,20 +225,26 @@ void		display_map(t_map *map, t_tex *img)
 		i++;
 	}
 	draw_square(img, (t_vec2i){pos + (int)map->pos.x * size, (int)map->pos.y *
-size}, (t_vec2i){size, size}, 0x00FF0000);
+size}, (t_vec2i){size, size}, 0x00FFFF00);
 }
 
 int			display(t_game *game)
 {
-	raycasting(&game->map, &game->img);
+	raycasting(game->map, &game->img);
 	display_hud(game, &game->img);
-	display_map(&game->map, &game->img);
+	display_map(game->map, &game->img);
 
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.tex, 0, 0);
+	if (game->actuel == 0)
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x00FF0000, "0");
+	else if (game->actuel == 1)
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x0000FF00, "1");
+	else if (game->actuel == 2)
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x000000FF, "2");
 
 	update_key(game);
-	check_if_obj(game, &game->map.map[(int)game->map.pos.y][(int)game->map.pos.x],
-(int)game->map.pos.x, (int)game->map.pos.x);
+	check_if_obj(game, &game->map->map[(int)game->map->pos.y][(int)game->
+map->pos.x], (int)game->map->pos.x, (int)game->map->pos.x);
 	update_sprite(game);
 	if (game->vie <= 0)
 		quit_game(game);

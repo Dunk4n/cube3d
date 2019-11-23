@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 12:28:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 18:12:26 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/23 14:59:43 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void		display_sprite(t_map *map, t_tex *img)
 	cnt.x = 0;
 	while (cnt.x < map->nb_sprite)
 	{
-		if (map->sprite[cnt.x].dist > 35)
+		if (map->sprite[cnt.x].dist > 35 || map->sprite[cnt.x].tmp == -1)
 		{
 			cnt.x++;
 			continue ;

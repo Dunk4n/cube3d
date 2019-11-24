@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:42:27 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 16:47:42 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:23:35 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	can_walk(char c)
 	return (0);
 }
 
-void		check_if_obj(t_game *game, char *c, int x, int y)
+void		check_if_obj(t_game *game, char *c)
 {
 	if (*c == '0')
 		return ;

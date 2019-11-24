@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 14:31:02 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 18:14:38 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:56:41 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	get_nb_sprite(t_map *map)
 		j = 0;
 		while (j < map->line_size[i])
 		{
-			if (value_sprite(map->map[i][j]) >= 0)
+			if (map->map[i][j] == '2')
 				nb++;
 			j++;
 		}
@@ -48,9 +48,9 @@ static int	set_sprite(t_map *map)
 		j = 0;
 		while (j < map->line_size[i])
 		{
-			if (value_sprite(map->map[i][j]) >= 0)
+			if (map->map[i][j] == '2')
 			{
-				map->sprite[nb].tex = sprite_num[value_sprite(map->map[i][j])];
+				map->sprite[nb].tex = 4;
 				map->sprite[nb].dist = 0;
 				map->sprite[nb].pos.x = (double)j + 0.5;
 				map->sprite[nb].pos.y = (double)i + 0.5;

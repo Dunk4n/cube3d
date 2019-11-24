@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 16:45:58 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:23:25 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			display(t_game *game)
 		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x000000FF, "2");
 	update_key(game);
 	check_if_obj(game, &game->map->map[(int)game->map->pos.y][(int)game->
-map->pos.x], (int)game->map->pos.x, (int)game->map->pos.x);
+map->pos.x]);
 	update_sprite(game);
 	if (game->vie <= 0)
 		quit_game(game);

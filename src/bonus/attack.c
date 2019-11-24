@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 15:54:59 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 15:16:30 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:21:51 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ tab2f[DELTA_DIST]);
 	return (&map->map[pos->y][pos->x]);
 }
 
-void	attack_gun(t_game *game, t_map *map)
+void	attack_gun(t_map *map)
 {
 	t_vec2i		pos;
 	t_sprite	*sp;
@@ -125,7 +125,7 @@ void	attack(t_game *game, t_map *map)
 
 	if (game->ammo > 0)
 	{
-		attack_gun(game, map);
+		attack_gun(map);
 		return ;
 	}
 	c = &map->map[(int)(map->pos.y + map->dir.y)][(int)(map->pos.x +

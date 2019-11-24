@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:12:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 16:46:17 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:35:35 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,9 @@ void			draw_floor(t_map *map, t_tex *img, t_vec2f *floor_wall,
 t_vec3i draw);
 void			display_map(t_map *map, t_tex *img);
 void			update_key(t_game *game);
-void			check_if_obj(t_game *game, char *c, int x, int y);
+void			check_if_obj(t_game *game, char *c);
+int				key_press(int key, t_game *game);
+int				key_released(int key, t_game *game);
+void			secret_porte(t_game *game, t_map *map);
 
 #endif

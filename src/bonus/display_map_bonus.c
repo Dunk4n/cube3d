@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:38:09 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 16:38:59 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:22:04 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		display_map(t_map *map, t_tex *img)
 	int		j;
 	int		size;
 	int		pos;
-	int		color;
 
 	i = 0;
 	pos = map->res.x / 1.65;

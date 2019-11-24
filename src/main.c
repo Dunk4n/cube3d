@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:28:28 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 21:01:47 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:38:09 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		main(int ac, char **av)
 		return (0);
 	if (!init_game(&game, av[1]))
 	{
-		write(1, "ERROR\n", 6);
+		write(1, "ERROR\nparsing\n", 14);
 		free_all(&game);
 		return (0);
 	}

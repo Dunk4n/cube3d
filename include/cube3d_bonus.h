@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:12:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 17:35:35 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 18:55:46 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ typedef struct	s_game
 	int		anim_weapon;
 	int		vie;
 	int		vie_max;
+	int		pid;
+	char	**env;
 }				t_game;
 
 int				get_file(char *file_name, t_map *map, void *mlx_ptr);
@@ -202,5 +204,6 @@ void			check_if_obj(t_game *game, char *c);
 int				key_press(int key, t_game *game);
 int				key_released(int key, t_game *game);
 void			secret_porte(t_game *game, t_map *map);
+int				play_music(char **env, char *sound, char *volum);
 
 #endif

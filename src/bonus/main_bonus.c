@@ -6,16 +6,19 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 13:11:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 17:37:59 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 19:11:30 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <signal.h>
 #include "cube3d_bonus.h"
 
 int			quit_game(t_game *game)
 {
 	free_all(game);
+	if (game->pid > 0)
+		kill(game->pid, 3);
 	exit(0);
 	return (0);
 }
@@ -78,7 +81,7 @@ static void	get_img(int ac, char **av)
 	put_in_bmp(&game.img);
 }
 
-int			main(int ac, char **av)
+int			main(int ac, char **av, char **env)
 {
 	t_game	game;
 
@@ -95,6 +98,8 @@ int			main(int ac, char **av)
 		free_all(&game);
 		return (0);
 	}
+	game.env = env;
+	game.pid = play_music(env, "sound/resident_evil.mp3", "1");
 	mlx_hook(game.win_ptr, 17, 0L, quit_game, (void*)(&game));
 	mlx_hook(game.win_ptr, 2, 1L << 0, key_press, (void*)(&game));
 	mlx_hook(game.win_ptr, 3, 1L << 1, key_released, (void*)(&game));

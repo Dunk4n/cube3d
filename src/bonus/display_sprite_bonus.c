@@ -6,13 +6,13 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 12:28:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/23 14:59:43 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:51:36 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d_bonus.h"
 
-static void	get_transform(t_map *map, t_sprite_draw *draw, int i)
+static void		get_transform(t_map *map, t_sprite_draw *draw, int i)
 {
 	t_vec2f	sprite_pos;
 	double	inv;
@@ -29,7 +29,7 @@ static void	get_transform(t_map *map, t_sprite_draw *draw, int i)
 	draw->sprite_height = ABS((int)(map->res.y / draw->transform.y));
 }
 
-static void	get_draw(t_map *map, t_sprite_draw *draw)
+static void		get_draw(t_map *map, t_sprite_draw *draw)
 {
 	draw->draw_start.y = -draw->sprite_height / 2 + map->height_d2 + map->h;
 	if (draw->draw_start.y < 0)
@@ -45,8 +45,8 @@ static void	get_draw(t_map *map, t_sprite_draw *draw)
 		draw->draw_end.x = map->res.x;
 }
 
-static void	draw_sprite(t_map *map, t_tex *img, t_sprite_draw *draw,
-t_vec2i cnt, double fact)
+static void		draw_sprite(t_map *map, t_tex *img, t_sprite_draw *draw,
+t_vec2i cnt)
 {
 	int		y;
 	int		d;
@@ -56,55 +56,59 @@ t_vec2i cnt, double fact)
 	while (y < draw->draw_end.y)
 	{
 		d = (y - map->h) * 256 - map->res.y * 128 + draw->sprite_height * 128;
-		draw->tex.y = ((d * map->tex_game[map->sprite[cnt.x].tex].size.y) /
+		draw->tex.y = ((d * map->tex_game[map->sprite[cnt.x - 1].tex].size.y) /
 draw->sprite_height) / 256;
-		color.color = ((int*)map->tex_game[map->sprite[cnt.x].tex].data)[draw->tex.y
-* map->tex_game[map->sprite[cnt.x].tex].size.x + draw->tex.x];
+		color.color = ((int*)map->tex_game[map->sprite[cnt.x - 1].tex].data)[
+draw->tex.y * map->tex_game[map->sprite[cnt.x - 1].tex].size.x + draw->tex.x];
 		if ((color.color & 0x00ffffff) != 0)
 		{
-			color.argb[R] *= fact;
-			color.argb[G] *= fact;
-			color.argb[B] *= fact;
+			color.argb[R] *= draw->tmp;
+			color.argb[G] *= draw->tmp;
+			color.argb[B] *= draw->tmp;
 			((int*)img->data)[cnt.y + (y * img->size_line)] = color.color;
 		}
 		y++;
 	}
 }
 
-void		display_sprite(t_map *map, t_tex *img)
+static double	get_fact(t_map *map, t_vec2i cnt, t_sprite_draw *draw)
+{
+	double			fact;
+
+	fact = (map->sprite[cnt.x - 1].dist / 50) + 0.5;
+	if (fact < 0)
+		fact = 0;
+	if (fact > 1)
+		fact = 1;
+	fact = 1 - fact;
+	get_transform(map, draw, cnt.x - 1);
+	return (fact);
+}
+
+void			display_sprite(t_map *map, t_tex *img)
 {
 	t_vec2i			cnt;
 	t_sprite_draw	draw;
-	double	fact;
 
 	cnt.x = 0;
-	while (cnt.x < map->nb_sprite)
+	while (cnt.x++ < map->nb_sprite)
 	{
-		if (map->sprite[cnt.x].dist > 35 || map->sprite[cnt.x].tmp == -1)
-		{
-			cnt.x++;
+		if (map->sprite[cnt.x - 1].dist > 35 ||
+map->sprite[cnt.x - 1].tmp == -1)
 			continue ;
-		}
-		fact = (map->sprite[cnt.x].dist / 50) + 0.5;
-		if (fact < 0)
-			fact = 0;
-		if (fact > 1)
-			fact = 1;
-		fact = 1 - fact;
-		get_transform(map, &draw, cnt.x);
+		draw.tmp = get_fact(map, cnt, &draw);
 		draw.sprite_width = ABS((int)(map->res.y / draw.transform.y));
 		get_draw(map, &draw);
 		cnt.y = draw.draw_start.x;
 		while (cnt.y < draw.draw_end.x)
 		{
 			draw.tex.x = (int)(256 * (cnt.y - (-draw.sprite_width / 2 +
-draw.sprite_screen_x)) * map->tex_game[map->sprite[cnt.x].tex].size.x /
+draw.sprite_screen_x)) * map->tex_game[map->sprite[cnt.x - 1].tex].size.x /
 draw.sprite_width) / 256;
 			if (draw.transform.y > 0 && cnt.y >= 0 && cnt.y < map->res.x &&
 draw.transform.y < map->zbuffer[cnt.y])
-				draw_sprite(map, img, &draw, cnt, fact);
+				draw_sprite(map, img, &draw, cnt);
 			cnt.y++;
 		}
-		cnt.x++;
 	}
 }

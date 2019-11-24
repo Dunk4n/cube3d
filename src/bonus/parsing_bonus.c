@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/21 15:16:47 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:08:15 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 static int	arg_full(t_map *map)
 {
 	return (map->res.x != -1 && map->tex[NO].tex && map->tex[SO].tex &&
-map->tex[WE].tex && map->tex[EA].tex && map->tex[S].tex && map->tex[F].tex
-&& map->tex[C].tex);
+map->tex[WE].tex && map->tex[EA].tex && map->tex[S].tex && map->tex[F].tex &&
+map->tex[C].tex);
 }
 
 int		(*const g_arg_fonction[NB_IDENTIFIER])(int, t_map*, char*,
 		void *mlx_ptr) = {
 	get_arg_tex, get_arg_tex, get_arg_tex, get_arg_tex, get_arg_tex,
-get_arg_tex, get_arg_tex, get_arg_r};
+	get_arg_tex, get_arg_tex, get_arg_r};
 
 static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 {

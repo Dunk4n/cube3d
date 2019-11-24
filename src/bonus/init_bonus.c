@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/23 16:05:55 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:04:22 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ static void	init_map(t_map *map)
 }
 
 const char	*g_tex_game[NB_GAME_TEX] = {"img/bonus/life.xpm",
-"img/bonus/torch1.xpm", "img/bonus/torch2.xpm", "img/bonus/torch3.xpm",
-"img/bonus/torch4.xpm", "img/bonus/knife1.xpm", "img/bonus/knife2.xpm",
-"img/bonus/knife3.xpm", "img/bonus/knife4.xpm", "img/bonus/knife5.xpm",
-"img/bonus/gun1.xpm", "img/bonus/gun2.xpm", "img/bonus/gun3.xpm",
-"img/bonus/gun4.xpm", "img/bonus/gun5.xpm", "img/bonus/gun.xpm",
-"img/bonus/skull.xpm", "img/bonus/companion.xpm", "img/bonus/ammo.xpm",
-"img/bonus/door.xpm", "img/bonus/tdoor.xpm", "img/bonus/key.xpm",
-"img/bonus/key_hud.xpm", "img/bonus/scream.xpm"};
+	"img/bonus/torch1.xpm", "img/bonus/torch2.xpm", "img/bonus/torch3.xpm",
+	"img/bonus/torch4.xpm", "img/bonus/knife1.xpm", "img/bonus/knife2.xpm",
+	"img/bonus/knife3.xpm", "img/bonus/knife4.xpm", "img/bonus/knife5.xpm",
+	"img/bonus/gun1.xpm", "img/bonus/gun2.xpm", "img/bonus/gun3.xpm",
+	"img/bonus/gun4.xpm", "img/bonus/gun5.xpm", "img/bonus/gun.xpm",
+	"img/bonus/skull.xpm", "img/bonus/companion.xpm", "img/bonus/ammo.xpm",
+	"img/bonus/door.xpm", "img/bonus/tdoor.xpm", "img/bonus/key.xpm",
+	"img/bonus/key_hud.xpm", "img/bonus/scream.xpm"};
 
 static int	get_all_tex(t_map *map, void *mlx_ptr)
 {
@@ -79,6 +79,9 @@ static void	init_var_game(t_game *game)
 	game->vie_max = 1000;
 	game->vie = game->vie_max;
 	game->key = 0;
+	init_map(&(game->maps[0]));
+	init_map(&(game->maps[1]));
+	init_map(&(game->maps[2]));
 }
 
 static int	get_all_maps(t_game *game, char **av, int ac)
@@ -86,7 +89,6 @@ static int	get_all_maps(t_game *game, char **av, int ac)
 	int	i;
 	int	j;
 
-	init_map(&(game->maps[0]));
 	if (!get_file(av[0], &game->maps[0], game->mlx_ptr))
 		return (0);
 	if (!(get_all_tex(&game->maps[0], game->mlx_ptr)) || !(game->maps[0].dist =
@@ -98,11 +100,9 @@ malloc(game->maps[0].height_d2 * sizeof(double))))
 	i = 0;
 	while (++i < ac)
 	{
-		init_map(&(game->maps[i]));
 		if (!get_file(av[i], &game->maps[i], game->mlx_ptr))
 			return (0);
-		game->maps[i].res.x = game->maps[0].res.x;
-		game->maps[i].res.y = game->maps[0].res.y;
+		game->maps[i].res = game->maps[0].res;
 		game->maps[i].dist = game->maps[0].dist;
 		j = 0;
 		while (j++ <= NB_GAME_TEX)
@@ -110,9 +110,6 @@ malloc(game->maps[0].height_d2 * sizeof(double))))
 		if (!get_sprite(&game->maps[i]))
 			return (0);
 	}
-	game->ac = ac;
-	game->actuel = 0;
-	game->map = &game->maps[0];
 	return (1);
 }
 
@@ -125,6 +122,9 @@ int			init_game(t_game *game, char **av, int ac)
 		return (0);
 	if (!get_all_maps(game, av, ac - 1))
 		return (0);
+	game->ac = ac - 1;
+	game->actuel = 0;
+	game->map = &game->maps[0];
 	if (!(game->win_ptr = mlx_new_window(game->mlx_ptr, game->map->res.x,
 game->map->res.y, "cube3d")))
 		return (0);

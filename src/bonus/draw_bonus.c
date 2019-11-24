@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 12:57:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/23 17:37:52 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:26:48 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,28 @@ void	draw_vertical_line(t_tex *img, int x, t_vec2i draw, int color)
 
 void	draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw, t_vec3i tex)
 {
-	int		y;
 	int		d;
 	int		tex_y;
 	t_color	color;
 	double	fact;
 
-//	if (map->zbuffer[draw.z] > 7)
-//		return ;
-//	fact = map->zbuffer[draw.z] / 10 + 0.5;
-//	if (fact < 0.2)
-//		fact = 0.2;
-//	if (fact > 1)
-//		fact = 1;
-//	fact = 1 - fact;
-	y = draw.x;
-	while (y < draw.y)
+	if (map->zbuffer[draw.z] > 7)
+		return ;
+	fact = map->zbuffer[draw.z] / 10 + 0.5;
+	if (fact < 0.2)
+		fact = 0.2;
+	if (fact > 1)
+		fact = 1;
+	fact = 1 - fact;
+	while (draw.x < draw.y)
 	{
-		d = (y - map->h) * 256 - map->res.y * 128 + tex.z * 128;
+		d = (draw.x - map->h) * 256 - map->res.y * 128 + tex.z * 128;
 		tex_y = ((d * map->tex[tex.y].size.y) / tex.z) / 256;
 		color.color = ((int*)map->tex[tex.y].data)[tex.x +
 (tex_y * map->tex[tex.y].size.x)];
-//		color.argb[R] *= fact;
-//		color.argb[G] *= fact;
-//		color.argb[B] *= fact;
-		((int*)img->data)[draw.z + (y * img->size_line)] = color.color;
-		y++;
+		color.argb[R] *= fact;
+		color.argb[G] *= fact;
+		color.argb[B] *= fact;
+		((int*)img->data)[draw.z + (draw.x++ * img->size_line)] = color.color;
 	}
 }

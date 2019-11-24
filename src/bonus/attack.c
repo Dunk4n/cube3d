@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 15:54:59 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/23 17:37:29 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 15:16:30 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ void	attack(t_game *game, t_map *map)
 		attack_gun(game, map);
 		return ;
 	}
-	c = &map->map[(int)(map->pos.y + map->dir.y)][(int)(map->pos.x
-+ map->dir.x)];
+	c = &map->map[(int)(map->pos.y + map->dir.y)][(int)(map->pos.x +
+map->dir.x)];
 	if (*c == '9')
 	{
 		if (!(sp = search_sprite(map, (int)(map->pos.x + map->dir.x),

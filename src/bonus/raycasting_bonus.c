@@ -6,13 +6,13 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 15:07:47 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 16:58:36 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:36:15 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d_bonus.h"
 
-t_vec2f	get_floor_wall(t_map *map)
+t_vec2f			get_floor_wall(t_map *map)
 {
 	t_vec2f	floor_wall;
 
@@ -39,44 +39,7 @@ t_vec2f	get_floor_wall(t_map *map)
 	return (floor_wall);
 }
 
-void	draw_floor(t_map *map, t_tex *img, t_vec2f *floor_wall, t_vec3i draw)
-{
-	double	current_dist;
-	double	weight;
-	t_vec2f	current_floor;
-	t_vec2i	floor_tex1;
-	t_vec2i	floor_tex2;
-	t_color	color;
-	double	fact;
-
-	current_dist = map->dist[draw.x - map->height_d2];
-	if (current_dist > 7)
-		return ;
-	weight = (current_dist) * (map->for_floor.per_wall_dist);
-	current_floor.x = weight * floor_wall->x + (1.0 - weight) * map->pos.x;
-	current_floor.y = weight * floor_wall->y + (1.0 - weight) * map->pos.y;
-	floor_tex1.x = (int)(current_floor.x * map->tex[F].size.x) % map->tex[F].size_int.x;
-	floor_tex1.y = (int)(current_floor.y * map->tex[F].size.y) % map->tex[F].size_int.y;
-	floor_tex2.x = (int)(current_floor.x * map->tex[C].size.x) % map->tex[C].size_int.x;
-	floor_tex2.y = (int)(current_floor.y * map->tex[C].size.y) % map->tex[C].size_int.y;
-
-	fact = current_dist / 5;
-	if (fact > 1)
-		fact = 1;
-	fact = 1 - fact;
-	color.color = ((int*)map->tex[F].data)[floor_tex1.x + (floor_tex1.y * map->tex[F].size_line)];
-	color.argb[R] *= fact;
-	color.argb[G] *= fact;
-	color.argb[B] *= fact;
-	((int*)img->data)[draw.z + (draw.x * img->size_line)] = color.color;
-	color.color = ((int*)map->tex[C].data)[floor_tex2.x + (floor_tex2.y * map->tex[C].size_line)];
-	color.argb[R] *= fact;
-	color.argb[G] *= fact;
-	color.argb[B] *= fact;
-	((int*)img->data)[draw.z + ((map->res.y - draw.x) * img->size_line)] = color.color;
-}
-
-void	display_floor(t_map *map, t_tex *img, t_vec3i draw)
+void			display_floor(t_map *map, t_tex *img, t_vec3i draw)
 {
 	t_vec2f	floor_wall;
 
@@ -91,7 +54,7 @@ void	display_floor(t_map *map, t_tex *img, t_vec3i draw)
 	}
 }
 
-void	get_dist(t_map *map, double *dist, t_vec3i draw)
+void			get_dist(t_map *map, double *dist, t_vec3i draw)
 {
 	int	i;
 
@@ -107,7 +70,7 @@ void	get_dist(t_map *map, double *dist, t_vec3i draw)
 	}
 }
 
-void	raycasting(t_map *map, t_tex *img)
+void			raycasting(t_map *map, t_tex *img)
 {
 	int		x;
 	t_vec3i draw;

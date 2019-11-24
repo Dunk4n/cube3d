@@ -6,14 +6,14 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 13:11:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/23 16:41:18 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:33:45 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "cube3d_bonus.h"
 
-int		quit_game(t_game *game)
+int			quit_game(t_game *game)
 {
 	free_all(game);
 	exit(0);
@@ -36,20 +36,20 @@ t_sprite	*search_sprite(t_map *map, int x, int y)
 	return (NULL);
 }
 
-void	secret_porte(t_game *game, t_map *map)
+void		secret_porte(t_game *game, t_map *map)
 {
 	char		*c;
 	t_sprite	*sp;
 	int			tmp;
 
-	c = &map->map[(int)(map->pos.y + map->dir.y * map->speed)][(int)(map->pos.x
-+ map->dir.x * map->speed)];
+	c = &map->map[(int)(map->pos.y + map->dir.y * map->speed)][(int)(
+map->pos.x + map->dir.x * map->speed)];
 	if (*c == '6')
 		*c = '0';
 	if (*c == '7')
 	{
-		if (!(sp = search_sprite(map, (int)(map->pos.x + map->dir.x * map->speed),
-(int)(map->pos.y + map->dir.y * map->speed))))
+		if (!(sp = search_sprite(map, (int)(map->pos.x + map->dir.x *
+map->speed), (int)(map->pos.y + map->dir.y * map->speed))))
 			return ;
 		if (sp->time == -1 && game->key <= 0)
 			return ;
@@ -63,7 +63,7 @@ void	secret_porte(t_game *game, t_map *map)
 	}
 }
 
-int		key_released(int key, t_game *game)
+int			key_released(int key, t_game *game)
 {
 	if (key == K_ESC)
 		quit_game(game);
@@ -105,7 +105,7 @@ int		key_released(int key, t_game *game)
 	return (0);
 }
 
-int		key_press(int key, t_game *game)
+int			key_press(int key, t_game *game)
 {
 	if (key == K_W)
 		game->map->key[P_W] = 1;
@@ -139,7 +139,7 @@ int		key_press(int key, t_game *game)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_game	game;
 

@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:12:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 18:55:46 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 11:34:34 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../lib/libft/libft.h"
 # include "keys.h"
 
-# define CHAR_MAP "NWSE0123456789"
+# define CHAR_MAP "SWNE0123456789"
 # define CHAR_SPRITE "2345789"
 # define CAN_WALK "03458"
 # define CANT_WALK "12679"

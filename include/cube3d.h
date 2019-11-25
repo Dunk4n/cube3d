@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 15:12:19 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 11:28:31 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../lib/libft/libft.h"
 # include "keys.h"
 
-# define CHAR_MAP "NWSE012"
+# define CHAR_MAP "SWNE012"
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 
 # define BYTES_PER_PIXEL 3

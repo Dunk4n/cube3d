@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/25 09:41:37 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 11:35:32 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int		(*const g_arg_fonction[NB_IDENTIFIER])(int, t_map*, char*,
 	get_arg_tex, get_arg_tex, get_arg_tex, get_arg_tex, get_arg_tex,
 	get_arg_tex, get_arg_tex, get_arg_r};
 
+const char	g_arg[][3] = {"SO", "WE", "NO", "EA", "S", "F", "C", "R"};
+
 static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 {
-	const char	arg[][3] = {"NO", "WE", "SO", "EA", "S", "F", "C", "R"};
 	int			i;
 	int			j;
 
@@ -45,8 +46,8 @@ static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 		return (0);
 	j = 0;
 	while (j++ < NB_IDENTIFIER)
-		if (!ft_strncmp(line, arg[j - 1], (ft_strlen(arg[j - 1]) < (size_t)i) ?
-(size_t)i : ft_strlen(arg[j - 1])))
+		if (!ft_strncmp(line, g_arg[j - 1], (ft_strlen(g_arg[j - 1]) <
+(size_t)i) ? (size_t)i : ft_strlen(g_arg[j - 1])))
 			return (g_arg_fonction[j - 1](j - 1, map, line + i, mlx_ptr));
 	return (0);
 }

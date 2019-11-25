@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 15:12:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/25 11:34:34 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:25:51 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ typedef struct	s_game
 	int		vie;
 	int		vie_max;
 	int		pid;
+	int		coup;
 	char	**env;
 }				t_game;
 
@@ -205,5 +206,6 @@ int				key_press(int key, t_game *game);
 int				key_released(int key, t_game *game);
 void			secret_porte(t_game *game, t_map *map);
 int				play_music(char **env, char *sound, char *volum);
+void			get_coup(t_game *game, int degat);
 
 #endif

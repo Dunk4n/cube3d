@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 15:54:59 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 19:07:39 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:15:27 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	attack(t_game *game, t_map *map)
 		attack_gun(map);
 		return ;
 	}
+	play_music(game->env, "sound/knif.mp3", "0.6");
 	c = &map->map[(int)(map->pos.y + map->dir.y)][(int)(map->pos.x +
 map->dir.x)];
 	if (*c == '9')

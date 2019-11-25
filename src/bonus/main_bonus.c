@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 13:11:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/25 11:16:13 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:15:21 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			main(int ac, char **av, char **env)
 		return (0);
 	}
 	game.env = env;
-	game.pid = play_music(env, "sound/resident_evil.mp3", "1");
+	game.pid = play_music(env, "sound/resident_evil.mp3", "0.8");
 	mlx_hook(game.win_ptr, 17, 0L, quit_game, (void*)(&game));
 	mlx_hook(game.win_ptr, 2, 1L << 0, key_press, (void*)(&game));
 	mlx_hook(game.win_ptr, 3, 1L << 1, key_released, (void*)(&game));

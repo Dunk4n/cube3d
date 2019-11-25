@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 20:50:40 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/25 10:34:18 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:20:22 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	init_var_game(t_game *game)
 	game->vie_max = 1000;
 	game->vie = game->vie_max;
 	game->key = 0;
+	game->coup = 0;
 	init_map(&(game->maps[0]));
 	init_map(&(game->maps[1]));
 	init_map(&(game->maps[2]));

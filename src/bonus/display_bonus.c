@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/25 10:53:12 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:24:43 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	update_sprite(t_game *game)
 		if (sp->tex == MONSTER && sp->tmp > 0)
 			if ((game->map->pos.x - sp->pos.x) * (game->map->pos.x - sp->
 pos.x) + (game->map->pos.y - sp->pos.y) * (game->map->pos.y - sp->pos.y) <= 1.5)
-				game->vie -= 3;
+				get_coup(game, 3);
 		if (sp->time > 0)
 			sp->time--;
 		if (sp->tex == TDOOR && sp->time == 0 && ((int)sp->pos.x !=
@@ -120,5 +120,7 @@ map->pos.x]);
 	update_sprite(game);
 	if (game->vie <= 0)
 		quit_game(game);
+	if (game->coup > 0)
+		game->coup -= 1;
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/25 09:58:50 by niduches         ###   ########.fr        #
+#    Updated: 2019/11/25 14:22:47 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,12 +69,12 @@ SRC_PATH_BONUS	=	main_bonus.c				\
 
 SRC_BONUS = $(addprefix $(D_SRC_BONUS),$(SRC_PATH_BONUS))
 
-NAME	=	cube3d
+NAME	=	cube3D
 
 OBJ			=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 OBJ_BONUS	=	$(SRC_BONUS:%.c=$(BUILD_DIR)/%.o)
 
-CFLAGS	=	-I$(D_INC) -Wall -Wextra -Werror
+CFLAGS	=	-I$(D_INC)# -Wall -Wextra -Werror
 
 LDFLAGS	=	-L$(D_LIB) -lm -lft -lmlx -framework OpenGL -framework Appkit
 

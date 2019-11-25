@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:42:27 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 17:23:35 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:28:34 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ void		check_if_obj(t_game *game, char *c)
 	if (*c == '3')
 		game->ammo = 6;
 	else if (*c == '4')
-	{
-		game->vie -= 15;
-		if (game->vie < 0)
-			game->vie = 0;
-	}
+		get_coup(game, 15);
 	else if (*c == '5')
 	{
 		game->vie += 3;

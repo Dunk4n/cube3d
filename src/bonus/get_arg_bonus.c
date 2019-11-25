@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/22 14:34:34 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 14:02:10 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	check_scree_size(t_map *map)
 {
-	if (map->res.x > 1920)
-		map->res.x = 1920;
-	if (map->res.y > 1080)
-		map->res.y = 1080;
+	if (map->res.x > 2880)
+		map->res.x = 2880;
+	if (map->res.y > 1800)
+		map->res.y = 1800;
 	map->height_d2 = map->res.y / 2;
 }
 
@@ -30,7 +30,7 @@ int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-	if (!ft_isdigit(line[i]))
+	if (!ft_isdigit(line[i]) || map->res.x != -1)
 		return (0);
 	map->res.x = ft_atoi(line + i);
 	while (line[i] && ft_isdigit(line[i]))
@@ -63,7 +63,7 @@ int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr)
 	j = 0;
 	while (line[i + j] && ft_isspace(line[i + j]))
 		j++;
-	if (line[i + j])
+	if (line[i + j] || map->tex[indice].tex)
 		return (0);
 	line[i] = '\0';
 	if (!(map->tex[indice].tex = mlx_xpm_file_to_image(mlx_ptr, line,

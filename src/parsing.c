@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 14:10:57 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 09:41:49 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,34 @@ static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 	return (0);
 }
 
+static int	good_name(char *file_name)
+{
+	int	i;
+
+	i = 0;
+	while (file_name[i])
+		i++;
+	if (i < 4)
+		return (0);
+	i--;
+	if (file_name[i--] != 'b')
+		return (0);
+	if (file_name[i--] != 'u')
+		return (0);
+	if (file_name[i--] != 'c')
+		return (0);
+	if (file_name[i] != '.')
+		return (0);
+	return (1);
+}
+
 int			get_file(char *file_name, t_map *map, void *mlx_ptr)
 {
 	int		fd;
 	char	*line;
 	int		ret;
 
-	if (!map || !file_name)
+	if (!map || !file_name || !good_name(file_name))
 		return (0);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		return (0);

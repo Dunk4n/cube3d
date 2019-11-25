@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 13:11:01 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 19:11:30 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 09:55:27 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			main(int ac, char **av, char **env)
 	{
 		write(1, "ERROR\nparsing\n", 14);
 		free_all(&game);
+		while (1);
 		return (0);
 	}
 	game.env = env;

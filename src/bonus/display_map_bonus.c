@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 16:38:09 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 17:22:04 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 11:11:59 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		display_map(t_map *map, t_tex *img)
 	i = 0;
 	pos = map->res.x / 1.65;
 	size = map->res.x / 150;
-	while (i < map->nb_line && i < 100 && (i + 1) * size < map->res.y)
+	while (i < map->nb_line && (i + 1) * size < map->res.y)
 	{
 		j = 0;
 		while (j < map->line_size[i] && pos + (j + 1) * size < map->res.x)

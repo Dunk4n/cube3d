@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 14:53:13 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/24 17:23:25 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 10:53:12 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,11 @@ int			display(t_game *game)
 	display_map(game->map, &game->img);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->img.tex, 0, 0);
 	if (game->actuel == 0)
-		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x00FF0000, "0");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x00FF0000, "1");
 	else if (game->actuel == 1)
-		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x0000FF00, "1");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x0000FF00, "2");
 	else if (game->actuel == 2)
-		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x000000FF, "2");
+		mlx_string_put(game->mlx_ptr, game->win_ptr, 0, 0, 0x000000FF, "3");
 	update_key(game);
 	check_if_obj(game, &game->map->map[(int)game->map->pos.y][(int)game->
 map->pos.x]);

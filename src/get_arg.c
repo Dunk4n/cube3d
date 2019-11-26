@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/25 14:02:01 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/26 14:18:27 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	check_scree_size(t_map *map)
 {
-	if (map->res.x > 2880)
-		map->res.x = 2880;
-	if (map->res.y > 1800)
-		map->res.y = 1800;
+	if (map->res.x > 2560)
+		map->res.x = 2560;
+	if (map->res.y > 1440)
+		map->res.y = 1440;
 }
 
 int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)

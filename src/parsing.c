@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:06 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 14:10:57 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 13:54:44 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int		(*const g_arg_fonction[NB_IDENTIFIER])(int, t_map*, char*,
 	get_arg_tex, get_arg_tex, get_arg_tex, get_arg_tex, get_arg_tex, get_arg_r,
 	get_arg_color, get_arg_color};
 
+const char	g_arg[][3] = {"SO", "WE", "NO", "EA", "S", "R", "F", "C"};
+
 static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 {
-	const char	arg[][3] = {"NO", "WE", "SO", "EA", "S", "R", "F", "C"};
 	int			i;
 	int			j;
 
@@ -45,10 +46,31 @@ static int	parse_identifier_line(char *line, t_map *map, void *mlx_ptr)
 		return (0);
 	j = 0;
 	while (j++ < NB_IDENTIFIER)
-		if (!ft_strncmp(line, arg[j - 1], (ft_strlen(arg[j - 1]) < (size_t)i) ?
-(size_t)i : ft_strlen(arg[j - 1])))
+		if (!ft_strncmp(line, g_arg[j - 1], (ft_strlen(g_arg[j - 1]) <
+(size_t)i) ? (size_t)i : ft_strlen(g_arg[j - 1])))
 			return (g_arg_fonction[j - 1](j - 1, map, line + i, mlx_ptr));
 	return (0);
+}
+
+static int	good_name(char *file_name)
+{
+	int	i;
+
+	i = 0;
+	while (file_name[i])
+		i++;
+	if (i < 4)
+		return (0);
+	i--;
+	if (file_name[i--] != 'b')
+		return (0);
+	if (file_name[i--] != 'u')
+		return (0);
+	if (file_name[i--] != 'c')
+		return (0);
+	if (file_name[i] != '.')
+		return (0);
+	return (1);
 }
 
 int			get_file(char *file_name, t_map *map, void *mlx_ptr)
@@ -57,7 +79,7 @@ int			get_file(char *file_name, t_map *map, void *mlx_ptr)
 	char	*line;
 	int		ret;
 
-	if (!map || !file_name)
+	if (!map || !file_name || !good_name(file_name))
 		return (0);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		return (0);

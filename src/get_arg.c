@@ -6,11 +6,19 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:57 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 21:38:57 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/26 14:18:27 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube3d.h"
+
+void	check_scree_size(t_map *map)
+{
+	if (map->res.x > 2560)
+		map->res.x = 2560;
+	if (map->res.y > 1440)
+		map->res.y = 1440;
+}
 
 int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 {
@@ -21,7 +29,7 @@ int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-	if (!ft_isdigit(line[i]))
+	if (!ft_isdigit(line[i]) || map->res.x != -1)
 		return (0);
 	map->res.x = ft_atoi(line + i);
 	while (line[i] && ft_isdigit(line[i]))
@@ -37,6 +45,7 @@ int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr)
 		i++;
 	if (line[i])
 		return (0);
+	check_scree_size(map);
 	return (1);
 }
 
@@ -53,7 +62,7 @@ int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr)
 	j = 0;
 	while (line[i + j] && ft_isspace(line[i + j]))
 		j++;
-	if (line[i + j])
+	if (line[i + j] || map->tex[indice].tex)
 		return (0);
 	line[i] = '\0';
 	if (!(map->tex[indice].tex = mlx_xpm_file_to_image(mlx_ptr, line,
@@ -76,7 +85,7 @@ int		get_arg_color(int indice, t_map *map, char *line, void *mlx_ptr)
 	color->argb[R] = ft_atoi(line);
 	while (*line && ft_isdigit(*line))
 		line++;
-	if (*(line++) != ',')
+	if (*(line++) != ',' || !color->argb[A])
 		return (0);
 	color->argb[G] = ft_atoi(line);
 	while (*line && ft_isdigit(*line))

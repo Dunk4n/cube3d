@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2020/08/11 13:35:02 by niduches         ###   ########.fr        #
+#    Updated: 2020/08/11 13:37:56 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,10 +60,16 @@ SRC_PATH_BONUS	=	main_bonus.c				\
 					sort_sprite_bonus.c			\
 					display_sprite_bonus.c		\
 					put_in_bmp_bonus.c			\
+					attack_bonus.c				\
+					draw_floor_bonus.c			\
+					display_map_bonus.c			\
+					update_key_bonus.c			\
+					key_bonus.c					\
+					play_music_bonus.c			\
 
 SRC_BONUS = $(addprefix $(D_SRC_BONUS),$(SRC_PATH_BONUS))
 
-NAME	=	cube3d
+NAME	=	cube3D
 
 OBJ			=	$(SRC:%.c=$(BUILD_DIR)/%.o)
 OBJ_BONUS	=	$(SRC_BONUS:%.c=$(BUILD_DIR)/%.o)

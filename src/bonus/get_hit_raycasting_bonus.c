@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:55:44 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 17:22:44 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/23 17:02:39 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ tab2i[POS].x < 0 || tab2i[POS].x >= map->line_size[tab2i[POS].y])
 	if (tab2i[POS].x >= map->line_size[tab2i[POS].y - 1] ||
 tab2i[POS].x >= map->line_size[tab2i[POS].y + 1])
 		return (1);
-	return (map->map[tab2i[POS].y][tab2i[POS].x] == '1');
+	return (map->map[tab2i[POS].y][tab2i[POS].x] == '1' ||
+map->map[tab2i[POS].y][tab2i[POS].x] == '6');
 }
 
 double	get_hit(t_map *map, t_vec2f ray_dir, int *side)

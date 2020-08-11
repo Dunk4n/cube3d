@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 12:22:41 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/19 16:08:01 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/24 16:57:57 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int				ft_printf(const char *str, ...);
 #  define BUFFER_SIZE 4096
 # endif
 
-int		get_next_line(int fd, char **line);
+int				get_next_line(int fd, char **line);
 
 #endif

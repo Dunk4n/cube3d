@@ -6,7 +6,7 @@
 /*   By: niduches <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 20:04:17 by niduches          #+#    #+#             */
-/*   Updated: 2019/11/20 14:09:32 by niduches         ###   ########.fr       */
+/*   Updated: 2019/11/25 11:28:31 by niduches         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,34 @@
 # include "../lib/libft/libft.h"
 # include "keys.h"
 
-# define CHAR_MAP "NWSE012"
+# define CHAR_MAP "SWNE012"
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 
 # define BYTES_PER_PIXEL 3
 # define FILE_HEADER_SIZE 14
 # define INFO_HEADER_SIZE 40
 
-enum	e_union_identifier
+enum			e_union_identifier
 {
 	NO, WE, SO, EA, S, RE, F, C, NB_IDENTIFIER
 };
 
-enum	e_raycasting_tab2i
+enum			e_raycasting_tab2i
 {
 	POS, STEP, NB_TAB2I
 };
 
-enum	e_raycasting_tab2f
+enum			e_raycasting_tab2f
 {
 	DELTA_DIST, SIDE_DIST, NB_TAB2F
 };
 
-enum	e_key_pressed
+enum			e_key_pressed
 {
 	P_W, P_S, P_D, P_A, P_RIGHT, P_LEFT, NB_KEY_PRESSED
 };
 
-enum	e_union_argb
+enum			e_union_argb
 {
 	B, G, R, A
 };
@@ -134,26 +134,28 @@ typedef struct	s_game
 	t_tex	img;
 }				t_game;
 
-int		get_file(char *file_name, t_map *map, void *mlx_ptr);
-int		get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr);
-int		get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr);
-int		get_arg_color(int indice, t_map *map, char *line, void *mlx_ptr);
-int		get_map(int fd, char **line, t_map *map);
-char	*to_good_map(char *line, t_map *map, int nb);
-int		good_map(t_map *map);
-void	free_map(t_map *map, void *mlx_ptr);
-void	free_all(t_game *game);
-int		init_game(t_game *game, char *map_name);
-int		display(t_game *game);
-void	raycasting(t_map *map, t_tex *img);
-void	draw_vertical_line(t_tex *img, int x, t_vec2i draw, int color);
-void	draw_square(t_tex *img, t_vec2i pos, t_vec2i draw, int color);
-int		get_sprite(t_map *map);
-void	draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw, t_vec3i tex);
-void	get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex);
-double	get_hit(t_map *map, t_vec2f ray_dir, int *side);
-void	sort_sprite(t_map *map);
-void	display_sprite(t_map *map, t_tex *img);
-int		put_in_bmp(t_tex *img);
+int				get_file(char *file_name, t_map *map, void *mlx_ptr);
+int				get_arg_r(int indice, t_map *map, char *line, void *mlx_ptr);
+int				get_arg_tex(int indice, t_map *map, char *line, void *mlx_ptr);
+int				get_arg_color(int indice, t_map *map, char *line,
+void *mlx_ptr);
+int				get_map(int fd, char **line, t_map *map);
+char			*to_good_map(char *line, t_map *map, int nb);
+int				good_map(t_map *map);
+void			free_map(t_map *map, void *mlx_ptr);
+void			free_all(t_game *game);
+int				init_game(t_game *game, char *map_name);
+int				display(t_game *game);
+void			raycasting(t_map *map, t_tex *img);
+void			draw_vertical_line(t_tex *img, int x, t_vec2i draw, int color);
+void			draw_square(t_tex *img, t_vec2i pos, t_vec2i draw, int color);
+int				get_sprite(t_map *map);
+void			draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw,
+t_vec3i tex);
+void			get_wall(t_map *map, int x, t_vec3i *draw, t_vec3i *tex);
+double			get_hit(t_map *map, t_vec2f ray_dir, int *side);
+void			sort_sprite(t_map *map);
+void			display_sprite(t_map *map, t_tex *img);
+int				put_in_bmp(t_tex *img);
 
 #endif

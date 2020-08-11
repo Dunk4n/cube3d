@@ -6,7 +6,7 @@
 #    By: niduches <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/19 16:00:17 by niduches          #+#    #+#              #
-#    Updated: 2019/11/20 15:52:39 by niduches         ###   ########.fr        #
+#    Updated: 2020/08/11 13:35:02 by niduches         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ OBJ_BONUS	=	$(SRC_BONUS:%.c=$(BUILD_DIR)/%.o)
 
 CFLAGS	=	-I$(D_INC)# -Wall -Wextra -Werror
 
-LDFLAGS	=	-L$(D_LIB) -lm -lft -lmlx -framework OpenGL -framework Appkit
+LDFLAGS	=	-L$(D_LIB) -lm -lft -lmlx -lX11 -lXext
 
 all:	$(NAME)
 
@@ -103,6 +103,10 @@ $(NAME): lib options $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(LDFLAGS)
 
 bonus: lib options $(OBJ_BONUS)
+	@echo "  BUILD    $@"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_BONUS) $(LDFLAGS)
+
+linux: lib options $(OBJ_BONUS)
 	@echo "  BUILD    $@"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_BONUS) $(LDFLAGS)
 

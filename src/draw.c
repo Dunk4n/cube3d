@@ -57,8 +57,8 @@ void	draw_vline_tex(t_map *map, t_tex *img, t_vec3i draw, t_vec3i tex)
 	{
 		d = y * 256 - map->res.y * 128 + tex.z * 128;
 		tex_y = ((d * map->tex[tex.y].size.y) / tex.z) / 256;
-		color = ((int*)map->tex[tex.y].data)[tex.x +
-(tex_y * map->tex[tex.y].size.x)];
+        if(tex_y >= 0)
+            color = ((int*)map->tex[tex.y].data)[((map->tex[tex.y].size.x - 1) - tex.x) + (tex_y * map->tex[tex.y].size.x)];
 		((int*)img->data)[draw.z + (y * img->size_line)] = color;
 		y++;
 	}

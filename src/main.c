@@ -63,12 +63,15 @@ int		main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2 && (ac != 3 || ft_strcmp(av[2], "-save")))
-		return (0);
+	{
+		ft_printf("./cube3D map_filename.cub [-save]\n-save: save first image to deepthought.bmp\n");
+		return (1);
+	}
 	if (!init_game(&game, av[1]))
 	{
 		write(1, "ERROR\nparsing\n", 14);
 		free_all(&game);
-		return (0);
+		return (1);
 	}
 	if (ac == 3 && !ft_strcmp(av[2], "-save"))
 	{

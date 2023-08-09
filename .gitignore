@@ -1,0 +1,6 @@
+a.out
+scop
+*.o
+*.a
+*.swp
+build/*

@@ -91,12 +91,15 @@ int			main(int ac, char **av, char **env)
 		return (0);
 	}
 	if (ac < 2 || ac > 4)
-		return (0);
+	{
+		ft_printf("./cube3D map_filename.cub [map_filename.cub ...]\n");
+		return (1);
+	}
 	if (!init_game(&game, av + 1, ac))
 	{
 		write(1, "ERROR\nparsing\n", 14);
 		free_all(&game);
-		return (0);
+		return (1);
 	}
 	game.env = env;
 	game.pid = play_music(env, "sound/resident_evil.mp3", "0.8");

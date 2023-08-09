@@ -25,7 +25,7 @@ make bonus
 * `SPACE`: action to open doors
 * `1`, `2` and `3`: switch between 3 different map
 
-![cube3d_door](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_door.png)
-![cube3d_end](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_end.png)
-![cube3d_mob](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_mob.png)
 ![cube3d_start](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_start.png)
+![cube3d_door](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_door.png)
+![cube3d_mob](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_mob.png)
+![cube3d_end](https://github.com/Dunk4n/cube3d/blob/master/img/cube3d_end.png)
